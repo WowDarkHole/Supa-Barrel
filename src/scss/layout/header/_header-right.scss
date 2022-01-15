@@ -1,0 +1,296 @@
+.header-right {
+    height: 100%;
+	
+	
+    .nav-item {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        .nav-link {
+            color: $l-ctd;
+            font-size: 1.125rem;
+        }
+    }
+	.right-sidebar{
+		margin-right:-1.875rem;
+		a{
+			height: 5rem;
+			width: 5rem;
+			text-align: center;
+			justify-content: center;
+			display: flex;
+			align-items: center;
+			border-left: 0.0625rem solid $light;
+		}
+	}
+    &>li {
+        &:not(:first-child) {
+            padding-left:1.25rem;
+			@include respond('tab-land') {
+				padding-left:1rem;
+			}
+        }
+    }
+    .notification_dropdown {
+        @include respond('phone-land') {
+            position: static;
+        }
+        .nav-link {
+            position: relative;
+            color: var(--primary);
+			border-radius: $radius;
+			padding: 0.9375rem;
+			line-height: 1;
+			 @include respond('laptop') {
+				padding:0.625rem;
+			 }
+			
+            i {
+                font-size: 1.5rem;
+				@include respond('laptop') {
+					font-size: 1.125rem;
+				}
+				
+            }
+			svg{
+				@include respond('laptop') {
+					width:1.5rem;
+					height:1.5rem;
+				}
+			}
+            .badge {
+                position: absolute;
+                font-size: 0.625rem;
+                border-radius: 50%;
+                right: 0rem;
+                top: -0.125rem;
+				border:0.125rem solid $white;
+                font-weight: normal;
+                height: 1.875rem;
+                width: 1.875rem;
+                line-height: 1rem;
+                text-align: center;
+                padding: 0.3125rem;
+				font-size: 0.875rem;
+				@include respond('laptop'){
+					right: -0.25rem;
+					top: -0.1875rem;	
+					height: 1.5625rem;
+					width: 1.5625rem;
+					line-height: 0.75rem;
+					padding: 0.25rem;
+					font-size: 0.6875rem;
+				}
+				@include respond('phone') {
+					height: 1.25rem;
+					width: 1.25rem;
+					border-width: 0.125rem;
+					line-height: 0.4375rem;
+					font-size: 0.5625rem;
+				}
+            }
+        }
+        .dropdown-item {
+            &:focus,
+            &:active {
+                a {
+                    color: $white;
+                }
+            }
+            a {
+                color: $dark;
+                &:hover {
+                    text-decoration: none;
+                }
+            }
+        }
+    }
+    .dropdown-menu {
+        border-width:0;
+        box-shadow: 0 0 2.3125rem rgba(8,21,66,0.05);
+        @at-root [data-theme-version="dark"] & {
+            box-shadow: none;
+        }
+    }
+	//search-area
+	.search-area{
+		width: 21.25rem;
+		.form-control{
+			height     : 3.5rem;
+			background : #f3f3f3;
+			border     : 0;
+		}	
+		.input-group-text{
+			height        : 3.5rem;
+			border-radius : 1rem;
+			background    : #f3f3f3;
+			padding       :  0 1.25rem;
+			i{
+				font-size : 1.5rem;
+			}
+		}
+		@include custommq ($max:100rem){
+			width: 15.625rem;
+		}
+		@include respond ('tab-land'){
+			display:none;
+		}
+	}
+	.recipe{
+		@include respond('phone-land'){
+			display:none;	
+		}	
+	}
+}
+.navbar-expand{
+	.header-profile{
+		position:relative;
+		margin-left: 1.875rem;
+		padding-left: 1.875rem;
+		.nav-link{
+			position:relative;
+			background:$white;
+			border-radius: 3rem;
+			padding:0.1875rem;
+			img{
+				height:3.5rem;
+				width:3.5rem;
+				border-radius:4.25rem;
+				@include respond('laptop'){
+					height: 2.1875rem;
+					width: 2.1875rem;	
+				}
+			}
+			&:before{
+				content: "";
+				position: absolute;
+				top: 0;
+				right: 0;
+				bottom: 0;
+				left: 0;
+				z-index: -1;
+				margin: -0.1875rem;
+				border-radius: inherit;
+				background: linear-gradient(to right, #FD683E , rgba(253,163,62,0.75) );
+			}
+		}
+		&:after{
+			content:"";
+			height:3.5rem;
+			width:0.0625rem;
+			position:absolute;
+			left:0;
+			top:2.125rem;
+			background:#E9E9E9;
+			@include respond('laptop'){
+				top:0.625rem;	
+			}
+			@include respond('phone'){
+				height:2.5rem;
+				top:1.125rem;
+			}
+		}
+	}
+}
+.dz-fullscreen{
+	#icon-minimize{
+		display:none;
+	}
+	&.active{
+		#icon-full{
+			display:none;
+		}
+		#icon-minimize{
+			display:inline-block;
+		}
+	}
+}
+.notification_dropdown {
+    .dropdown-menu-end {
+        min-width: 19.375rem;
+        padding: 0rem 0 1rem;
+        top: 100%;
+		
+        .notification_title {
+            background: var(--primary);
+            color: $white;
+            padding: 0.625rem 1.25rem;
+            h5 {
+                color: $white;
+                margin-bottom: 0.1875rem;
+            }
+        }
+        .media {
+			width: 2.8125rem ;
+			height: 2.8125rem ;
+			font-size: 1.125rem ;
+			
+            // &:last-child{
+            //     border-bottom: 0rem;
+            // }
+            @at-root [data-theme-version="dark"] & {
+                border-color: $d-border;
+            }
+            &>span {
+                width: 2.1875rem;
+                height: 2.1875rem;
+                border-radius: 3.125rem;
+                display: inline-block;
+                padding: 0.4375rem 0.5625rem;
+                margin-right: 0.625rem;
+				@at-root [direction="rtl"]#{&} {
+					 margin-right: 0;
+					 margin-left: 0.625rem
+				}
+                &.success {
+                    background: $success-light;
+                    color: $success;
+                }
+                &.primary {
+                    background: var(--rgba-primary-1);
+                    color: var(--primary);
+                }
+                &.danger {
+                    background: $danger-light;
+                    color: $danger;
+                }
+            }
+            .notify-time {
+                width: 100%;
+                margin-right: 0;
+                color: $l-ctl;
+            }
+            p {
+                text-overflow: ellipsis;
+                overflow: hidden;
+                white-space: nowrap;
+                max-width: 12.5rem;
+                margin-bottom: 0;
+                margin-top: 0.3125rem;
+				@include respond('phone') {
+				    max-width: 6.25rem;
+				}
+            }
+        }
+        .all-notification {
+            display: block;
+            padding: 0.9375rem 1.875rem 0;
+            // color: $dark;
+            text-align: center;
+			border-top: 0.0625rem solid $light;
+				
+            i {
+                margin-left: 0.625rem;
+            }
+        }
+    }
+	
+}
+
+
+
+[data-container="boxed"] {
+	.search-area{
+		display:none!important;
+	}
+}

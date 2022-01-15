@@ -1,0 +1,30 @@
+.customer-search{
+	.search-area{
+		.input-group-text{
+			background:$white;
+			border:0.0625rem solid $border-color;
+			border-top-right-radius:3.125rem;
+			border-bottom-right-radius:3.125rem;
+			
+		}
+		.form-control{
+			border:0.0625rem solid $border-color;	
+			border-top-left-radius:3.125rem;
+			border-bottom-left-radius:3.125rem;
+			border-right: 0;
+		}
+	}
+	
+}
+.shadow-hover{
+	tr{
+		td{
+			@include transitionMedium;
+		}
+		&:hover{
+			td{
+				font-weight:700;	
+			}	
+		}
+	}	
+}

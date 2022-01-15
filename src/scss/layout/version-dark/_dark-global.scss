@@ -1,0 +1,338 @@
+[data-theme-version="dark"]{
+	.card {
+        background-color: $dark-card;
+		box-shadow:none;
+    }
+	.dropdown-menu {
+        background-color: $dark-card;
+		box-shadow: 0rem 0rem 0rem 0.0625rem rgba(255, 255, 255,0.1);
+		.dropdown-item {
+			color:#777777;
+			&.selected,
+			&.selected.active,
+			&.active,
+			&:hover, 
+			&:focus {
+				background-color: $dark-card;
+				color: $white;
+			}
+		}
+    }
+	a{
+		color:$white;
+	}
+	.text-primary{
+		color:$white!important;
+	}
+	.btn-link g [fill]{
+		fill: #fff;
+	}
+	.btn-light:active, 
+	.btn-light:focus, 
+	.btn-light:hover{
+		color:#000;
+	}
+	.form-control {
+        background-color:$dark-card;
+        border-color: $d-border;
+        color: $white;
+    }
+	.modal-content{
+		background:$dark-card;
+	}
+	.modal-footer,
+	.modal-header{
+		border-color: $d-border;
+	}
+	.close{
+	    font-weight: 400;
+		color: $white;
+		text-shadow: none;
+		
+		&:hover{
+			color: $white;
+		}
+	}
+	.star-rating .product-review,
+	.new-arrival-content .item{
+		color: $white;
+	}
+	.custom-dropdown .dropdown-menu{
+		border-color: $d-border;
+	}
+	.widget-stat .media > span{
+	    background: $d-border;
+	    border-color: $d-border;
+		color:$white;
+	}
+	.plus-minus-input .custom-btn{
+		background: $d-bg;
+	    border-color: $d-border;
+	}
+	.dropdown-divider,
+	.size-filter ul li{
+		border-color: $d-border;
+	}
+	.custom-select{
+	    border-color: $d-border;
+		color: $d-ctl;
+		background:$d-bg;
+	}
+	.nav-tabs{
+		border-color: $d-border!important;
+	}
+	.mail-list .list-group-item.active i {
+		color: $white;
+	}
+	hr{
+		border-color: $d-border;
+	}
+	.grid-col{
+		background:$d-bg;
+	}
+	
+	.noUi-target{
+		border-color:$d-border;
+		border-radius: 0.5rem;
+		box-shadow: none;
+		
+		.noUi-connects{
+			background:$d-border;
+		}
+	}
+	.noUi-marker-large,
+	.noUi-marker{
+		background:$d-border;
+	}
+	.input-group-text{
+		background:$dark-card;
+		color:$body-color;
+		border-color:$d-border;
+	}
+	.note-editor.note-frame{
+		border-color:$d-border;
+		.btn{
+			color:$white;
+		}
+		.note-editing-area .note-editable{
+			color:$white;
+		}
+	}
+	.widget-media .timeline .timeline-panel{
+		border-color:$d-border; 
+	}
+	.notification_dropdown .dropdown-menu-right .all-notification{
+		border-color:$d-border; 
+	}
+	#user-activity .nav-tabs .nav-link{
+		border-color:$d-border; 
+        &.active{
+            background:$d-bg;
+            color:$white;
+        }
+	}
+	.list-group-item-action{
+		color:$body-color;
+	}
+	.list-group-item-action:focus, 
+	.list-group-item-action:hover, 
+	.list-group-item-action:focus{
+		background-color:$d-bg; 
+		border-color:$d-bg; 
+	}
+	.list-group-item.active{
+		color:$white;
+		border-color:var(--primary);
+		&:focus, 
+		&:hover, 
+		&:focus{
+			background-color:var(--primary); 
+			border-color:var(--primary); 
+			color:$white;
+		}
+	}
+	.swal2-popup{
+		background:$dark-card;
+	}	
+	.form-head .btn-outline-primary{
+		border-color:$d-border;
+	}
+	.form-head .btn-outline-primary:hover{
+		border-color:var(--primary);
+	}
+	.review-tab.nav-pills li a.nav-link.active{
+		background:transparent;
+	}
+	.new-arrival-content {
+		 h4 {
+			a{
+				color:$white;
+			}
+		 }
+	}
+	.text-black{
+		color:$white!important;
+	}
+	.abilities-chart .ct-chart .ct-label{
+		fill:$white;
+	}
+	.morris_chart_height text tspan{
+		fill:$white;
+	}
+	.btn-link{
+		color:$white;
+	}
+	.order-bg{
+		background:$d-bg;
+	}
+	.detault-daterange{
+			background:$d-bg;
+			color:$white;
+		.input-group-text{
+			background:$dark-card;
+			border:0;
+
+		}	
+	}
+	.dataTablesCard{
+		background-color:$dark-card;
+	}
+	.compose-content .dropzone{
+		background:$d-bg!important;
+		.dz-message .dz-button{
+			color:$white;
+		}
+	}
+	.daterangepicker{
+		background:$d-bg;
+		border-color:var(--primary);
+		.calendar-table{
+			border-color:var(--primary);
+			background:$d-bg;
+			.table-condensed{
+				td{
+					&:hover{
+						background-color:var(--primary);
+						color:$white;
+					}
+				}
+			}
+		}
+        &:after{
+            border-bottom: 0.375rem solid $d-bg;
+        }
+	}
+    
+   
+	
+	
+	.paging_simple_numbers.dataTables_paginate{
+		background:$d-bg;
+	}
+	.dataTables_wrapper .dataTables_paginate span .paginate_button.current,
+	.dataTables_wrapper .dataTables_paginate span .paginate_button:hover{
+		background:var(--primary);
+		color:$white!important;
+	}
+	
+	
+	
+	.nice-select .option{
+		background:$dark-card;
+	}
+	.nice-select .option:hover, .nice-select .option.focus, .nice-select .option.selected.focus{
+		background:$dark-card;
+	}
+	
+	
+	.table.border-hover tr:hover td{
+		border-color:$d-border;
+	}
+	.customer-wrapper .c-name{
+		color:$white;	
+	}
+	.card-footer{
+		a{
+			background:$d-bg;
+			box-shadow:0rem 0.25rem 2.125rem rgba(33, 33 ,48,20%);
+		}	
+	}
+	.coin-tabs{
+		background:$d-bg;	
+		.nav-tabs{
+			.nav-item {
+				.nav-link{
+					color:$white;	
+				}	
+			}	
+		}
+	}
+	.dark-btn{
+		svg{
+			path{
+				stroke:$white;	
+			}	
+		}	
+	}
+	.customer-search .search-area .input-group-text{
+		background:$dark-card;
+		border-color:$d-border;	
+	}
+	.customer-search .search-area .form-control{
+		border-color:$d-border;	
+	}
+	.bg-white{
+		background:$dark-card!important;	
+	}
+	.orders li a{
+		background:$dark-card;	
+	}
+	.orders{
+		.active
+		{
+			a{
+				background:var(--primary);	
+			}	
+		}	
+	}
+	.bar-chart{
+		.apexcharts-legend-text{
+			color:$white!important;	
+		}
+		tspan{
+			fill:$white;	
+		}
+	}
+	.menu-toggle .deznav .metismenu li > ul{
+		background:$dark-card!important;
+	}
+	.revenueChart{
+		line{
+			stroke:$d-border;		
+		}	
+	}
+	.chart-timeline{
+		.apexcharts-series{
+			rect{
+				fill:$d-bg;		
+			}	
+		}
+		.apexcharts-gridlines-horizontal{
+			line{
+				stroke:$d-border;		
+			}	
+		}
+		tspan{
+			fill:$white;	
+		}
+	}
+	 .table thead th{
+		border-color:$d-border!important;	
+	}
+	.dataTables_wrapper .dataTables_length, .dataTables_wrapper .dataTables_filter, .dataTables_wrapper .dataTables_info, .dataTables_wrapper .dataTables_processing, .dataTables_wrapper .dataTables_paginate{
+		color:$white;	
+	}
+	.toggle-switch.text-end .form-check-label{
+		color:$white;	
+	}
+}

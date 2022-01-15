@@ -1,0 +1,62 @@
+.bar-chart{
+	.value{
+		font-size:1.25rem;
+		font-weight:700;
+	}	
+}
+.seler-menus{
+	img{
+		height:8.125rem;
+		width:100%;
+		border-radius:0.75rem;
+		object-fit:cover;
+	}	
+}
+.trending-menu{
+	img{
+		height:3.75rem;
+		width:3.75rem;
+		border-radius:0.75rem;
+	}	
+}
+.favt-item{
+	img{
+		height:7.8125rem;
+		width:7.8125rem;
+		border-radius:0.75rem;
+		@include respond('tab-land'){
+			height:5.625rem;
+			width:5.625rem;
+		}
+	}	
+}
+.number{
+	float: right;
+	margin-bottom: -1.5625rem;
+	position:relative;
+	z-index:1;
+	@include respond('laptop'){
+		margin-bottom:-0.3125rem;	
+	}
+}
+
+.bar-chart{
+	.apexcharts-legend-series{
+		margin-right: 30px!important;
+		.apexcharts-legend-marker{
+			margin-right: 10px!important;
+		}
+		.value{
+			margin-left: 15px;
+		}
+	}
+}
+
+.default-select-2{
+	border-color: #eee;
+	font-weight: 600;
+	&:hover{
+		background-color : transparent;
+	}
+	
+}

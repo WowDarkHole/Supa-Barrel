@@ -1,0 +1,68 @@
+.header-left {
+    height: 100%;
+    display: flex;
+    align-items: center;
+	.breadcrumb{
+		margin-bottom:0;
+	}
+	.dashboard_bar {
+		font-size: 2.375rem;
+		font-weight: 400;
+		color:$black;
+		@include respond('tab-land') {
+			font-size: 2.125rem;
+		}
+		@include respond('phone-land') {
+			display:none;
+		}
+		&.sub-bar{
+			font-size:1.875rem;
+		}
+	}
+	.search-area{
+		width:25.9375rem;
+		@include custommq($max:100rem){
+			width:23.75rem;
+		}
+		@include respond('tab-land'){
+			width:16.25rem;	
+		}
+		@include respond('tab-port') {
+			display:none;
+		}
+		.form-control{
+			border:0.0625rem solid $border-color;
+			border-top-left-radius: 2.625rem;
+			border-bottom-left-radius: 2.625rem;
+			height:3.5rem;
+			padding:0.3125rem 1.875rem;	
+			font-size: 1rem;
+			border-right: 0;
+			@include respond('laptop') {
+				height:2.5rem;
+				.input-group-text{
+					i{
+						font-size:1rem;	
+					}	
+				}
+			}
+			
+		}
+		.input-group-text{
+			border-top-right-radius: 2.625rem;
+			border-bottom-right-radius: 2.625rem;
+			border:0.0625rem solid $border-color;
+			background:transparent;
+			padding:0 1.875rem;
+			i{
+				font-size:1.375rem;
+			}
+		}
+	}
+}
+
+[data-sidebar-style="compact"] {
+    .header-left {
+        margin-left: 0;
+    }
+}
