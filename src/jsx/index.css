@@ -1,3 +1,33 @@
+.border-yellow {
+  border-color: yellow !important;
+}
+.height-50 {
+  height: 50px !important;
+}
+.height-75 {
+  height: 75px !important;
+}
+.height-100 {
+  height: 100px !important;
+}
+.height-200 {
+  height: 200px !important;
+}
+.height-300 {
+  height: 300px !important;
+}
+.height-400 {
+  height: 400px !important;
+}
+.height-500 {
+  height: 500px !important;
+}
+.fontsize-20 {
+  font-size: 20px !important;
+}
+.fontsize-25 {
+  font-size: 25px !important;
+}
 .testimonial-one img {
   display: unset !important;
   width: 90%;

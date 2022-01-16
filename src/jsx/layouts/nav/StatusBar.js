@@ -28,11 +28,11 @@ const StatusBar = () => {
   );
   return (
     <div className="status-bar overflow-hidden text-nowrap d-flex align-item-center">
-      <Marquee gradientWidth={10} gradientColor={[0, 0, 0]}>
+      <Marquee gradientWidth={0}>
         <span className="d-inline-block">
           {
             StatusValues.map((item, ind) => (
-              <span className="text-dark h5 p-2 border-end border-2 border-dark">
+              <span className="text-dark p-2 border-end border-2 border-dark ">
                 {item.title}, {' '}
                 {item.price}, {' '}
                 {item.percent}%

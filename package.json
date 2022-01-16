@@ -88,7 +88,9 @@
     "sweetalert2": "^10.10.4",
     "swiper": "^6.5.9",
     "use-scroll-position": "0.0.4",
+    "wallet-address-validator": "^0.2.4",
     "web-vitals": "^0.2.4",
+    "web3": "^1.6.1",
     "yup": "^0.32.8"
   },
   "scripts": {
@@ -96,12 +98,6 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
   },
   "browserslist": {
     "production": [
