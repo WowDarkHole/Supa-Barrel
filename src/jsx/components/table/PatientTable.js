@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import {  Dropdown } from "react-bootstrap";
+import { Dropdown } from "react-bootstrap";
 
 import { Link } from "react-router-dom";
 // import data from "./tableData.js";
@@ -25,7 +25,7 @@ const PatientTable = () => {
   // use effect
   useEffect(() => {
     setData(document.querySelectorAll("#patientTable_basic_table tbody tr"));
-   // chackboxFun();
+    // chackboxFun();
   }, [test]);
 
   // Active pagginarion
@@ -844,9 +844,8 @@ const PatientTable = () => {
                       <Link
                         key={i}
                         to="/table-datatable-basic"
-                        className={`paginate_button  ${
-                          activePag.current === i ? "current" : ""
-                        } `}
+                        className={`paginate_button  ${activePag.current === i ? "current" : ""
+                          } `}
                         onClick={() => onClick(i)}
                       >
                         {number}

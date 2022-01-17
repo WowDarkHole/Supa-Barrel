@@ -1,5 +1,5 @@
-import React, {  useRef } from "react";
-import {  Badge } from "react-bootstrap";
+import React, { useRef } from "react";
+import { Badge } from "react-bootstrap";
 
 import { Link } from "react-router-dom";
 import data from "./tableData.js";
@@ -102,9 +102,8 @@ const FeesCollection = () => {
                       <Link
                         key={i}
                         to="/table-datatable-basic"
-                        className={`paginate_button  ${
-                          activePag.current === i ? "current" : ""
-                        } `}
+                        className={`paginate_button  ${activePag.current === i ? "current" : ""
+                          } `}
                         onClick={() => onClick(i)}
                       >
                         {number}

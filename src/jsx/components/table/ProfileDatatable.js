@@ -1,4 +1,4 @@
-import React, { Fragment,  useRef } from "react";
+import React, { Fragment, useRef } from "react";
 // import { Table, Pagination } from "react-bootstrap";
 
 import { Link } from "react-router-dom";
@@ -124,9 +124,8 @@ const ProfileDatatable = () => {
                       <Link
                         key={i}
                         to="/table-datatable-basic"
-                        className={`paginate_button  ${
-                          activePag.current === i ? "current" : ""
-                        } `}
+                        className={`paginate_button  ${activePag.current === i ? "current" : ""
+                          } `}
                         onClick={() => onClick(i)}
                       >
                         {number}

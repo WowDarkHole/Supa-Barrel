@@ -14,26 +14,47 @@ import web3 from "web3";
 import swalMessage from "@sweetalert/with-react";
 import swal from "sweetalert";
 import PageTitle from "../../../layouts/PageTitle";
+import loadable from "@loadable/component";
+import pMinDelay from "p-min-delay";
+import SortingTable from "../../table/SortingTable/SortingTable";
+const ApexBar2 = loadable(() => pMinDelay(import("../apexcharts/Bar2"), 1000));
+const ApexBar3 = loadable(() => pMinDelay(import("../apexcharts/Bar3"), 1000));
+const ApexRedialBar = loadable(() => pMinDelay(import("../apexcharts/RadialBar"), 1000));
+const ApexLine = loadable(() => pMinDelay(import("../apexcharts/Line5"), 1000));
+const ApexLine3 = loadable(() => pMinDelay(import("../apexcharts/Line3"), 1000));
+const ApexLine4 = loadable(() => pMinDelay(import("../apexcharts/Line4"), 1000));
 
-
-const sampleData = [64, 24, 40, 76, 19, 0, 2, 46, 65, 12, 10, 6, 15, 57, 35, 81,
-  86, 12, 12, 21, 53, 44, 2, 1, 58, 9, 61, 64, 42, 92, 58, 9, 34, 47, 89, 52, 3, 69, 33, 2, 60, 71,
-  71, 22, 65, 70, 31, 81, 36, 89,
-];
-
-
+const mockupSearchResult = {
+  username: "UserNameHere",
+  totalAccVal: {
+    data: [1, 2, 3, 4, 5, 56]
+  },
+  totalEthVal: {
+    data: [12, 31, 23, 123, 4, 34, 5, 57, 67, 568, 678, 567]
+  },
+  totalNftVal: {
+    data: [345, 56, 657, 456, 456, 2, 23, 4, 6, 567, 58, 34, 93]
+  },
+  totalProfit: {
+    data: [4, 2, 4, 5, 346, 67, 457, 647, 84, 56, 32, 45, 234]
+  },
+  time: ['2019-04-18T19:57:30.350275', '2019-04-19T19:57:30.350275', '2019-04-20T19:57:30.350275', '2019-04-21T19:57:30.350275', '2019-04-22T19:57:30.350275', '2019-04-23T19:57:30.350275',]
+}
 function ChartSparkline() {
-  const [valid, setValid] = useState(false);
+  const [valid, setValid] = useState(true);
   const [address, setAddress] = useState('');
+  const [searchResult, setSearchResult] = useState(false);
   const WalletAddressVaidation = (key) => {
     if (key === 'Enter') {
       const valid = web3.utils.isAddress(address);
       if (valid) {
         setValid(true);
+        setSearchResult(true);
         console.log("Valid!");
       }
       else {
         setValid(false);
+        setSearchResult(false);
         console.log("Invalid!");
       }
     }
@@ -57,8 +78,57 @@ function ChartSparkline() {
             ) : (<span className="text-danger h4">Wrong Wallet Address!</span>)}
           </div>
         </div>
-
       </div>
+      {searchResult ? (<h1>{mockupSearchResult.username}</h1>) : (<span></span>)}
+
+      {searchResult ? (
+        <Row>
+          <Col xl={6} lg={6}>
+            <Card>
+              <Card.Body>
+                <ApexLine />
+              </Card.Body>
+              <Card.Footer className="d-flex justify-content-center">
+                <h4 className="card-title">Total Account Value</h4>
+              </Card.Footer>
+            </Card>
+          </Col>
+          <Col xl={6} lg={6}>
+            <Card>
+              <Card.Body>
+                <ApexLine3 />
+              </Card.Body>
+              <Card.Footer className="d-flex justify-content-center">
+                <h4 className="card-title">Total ETH Value</h4>
+              </Card.Footer>
+            </Card>
+          </Col>
+          <Col xl={6} lg={6}>
+            <Card>
+              <Card.Body>
+                <ApexLine />
+              </Card.Body>
+              <Card.Footer className="d-flex justify-content-center">
+                <h4 className="card-title">Total NFT Value</h4>
+              </Card.Footer>
+            </Card>
+          </Col>
+          <Col xl={6} lg={6}>
+            <Card>
+              <Card.Body>
+                <ApexLine3 />
+              </Card.Body>
+              <Card.Footer className="d-flex justify-content-center">
+                <h4 className="card-title">Total Profits</h4>
+              </Card.Footer>
+            </Card>
+          </Col>
+        </Row>) : (
+        <span></span>
+      )}
+      {searchResult ? (
+        <SortingTable></SortingTable>
+      ) : (<span></span>)}
     </>
   );
 }
