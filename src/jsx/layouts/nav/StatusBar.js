@@ -32,7 +32,7 @@ const StatusBar = () => {
         <span className="d-inline-block">
           {
             StatusValues.map((item, ind) => (
-              <span className="text-dark p-2 border-end border-2 border-dark ">
+              <span className="text-dark p-2 border-end border-2 border-dark" key={ind}>
                 {item.title}, {' '}
                 {item.price}, {' '}
                 {item.percent}%

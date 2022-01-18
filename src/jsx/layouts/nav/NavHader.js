@@ -15,10 +15,10 @@ const NavHader = () => {
     <div className="nav-header">
       <Link to="/dashboard" className="brand-logo">
         {background.value === "dark" || navigationHader !== "color_1" ? (
-          <Link to="/">
+          <span>
             <span><img src={logo} alt="Logo" className="logo-abbr" /></span>
             <span><img src={logoWhite} alt="Logo" className="brand-title" /></span>
-          </Link>
+          </span>
         ) : (
           // <Fragment>
           //   <svg className="logo-abbr" width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -45,10 +45,10 @@ const NavHader = () => {
           // <Link to="/" className="login-logo">
           //   <img src={logo} alt="Logo" className="img-fluid" />
           // </Link>
-          <Link to="/">
+          <span>
             <span><img src={logo} alt="Logo" className="logo-abbr" /></span>
             <span><img src={logoWhite} alt="Logo" className="brand-title" /></span>
-          </Link>
+          </span>
         )}
       </Link>
 

@@ -27,7 +27,7 @@ const cardBlog = [
 const Home = () => {
 	const { changeBackground, background } = useContext(ThemeContext);
 	useEffect(() => {
-		changeBackground({ value: "light", label: "Light" });
+		changeBackground({ value: "dark", label: "Dark" });
 	}, []);
 	return (
 		<>

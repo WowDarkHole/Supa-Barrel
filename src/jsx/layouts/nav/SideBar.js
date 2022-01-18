@@ -13,21 +13,21 @@ import { ThemeContext } from "../../../context/ThemeContext";
 import plus from "../../../images/plus.png";
 
 class MM extends Component {
-	  componentDidMount() {
-		this.$el = this.el;
-		this.mm = new Metismenu(this.$el);
-	  }
-	  componentWillUnmount() {
-	  }
-	render() {
-		return (
-			<div className="mm-wrapper">
-				<ul className="metismenu" ref={(el) => (this.el = el)}>
-					{this.props.children}
-				</ul>
-			</div>
-		);
-	}
+  componentDidMount() {
+    this.$el = this.el;
+    this.mm = new Metismenu(this.$el);
+  }
+  componentWillUnmount() {
+  }
+  render() {
+    return (
+      <div className="mm-wrapper">
+        <ul className="metismenu" ref={(el) => (this.el = el)}>
+          {this.props.children}
+        </ul>
+      </div>
+    );
+  }
 }
 
 const SideBar = () => {
@@ -44,14 +44,14 @@ const SideBar = () => {
       return aaa.classList.toggle("menu-toggle");
     }
     btn.addEventListener("click", toggleFunc);
-	
-	//sidebar icon Heart blast
-	var handleheartBlast = document.querySelector('.heart');
-        function heartBlast() {
-            return handleheartBlast.classList.toggle("heart-blast");
-        }
-        handleheartBlast.addEventListener('click', heartBlast);
-	
+
+    //sidebar icon Heart blast
+    var handleheartBlast = document.querySelector('.heart');
+    function heartBlast() {
+      return handleheartBlast.classList.toggle("heart-blast");
+    }
+    handleheartBlast.addEventListener('click', heartBlast);
+
   }, []);
   let scrollPosition = useScrollPosition();
   /// Path
@@ -60,15 +60,15 @@ const SideBar = () => {
   path = path[path.length - 1];
   /// Active menu
   let deshBoard = [
-      "",
-      "dashboard-dark",
-      "order-list",
-      "order-details",
-      "customers",
-      "analytics",
-      "review",
-      "task",
-    ],
+    "",
+    "dashboard-dark",
+    "order-list",
+    "order-details",
+    "customers",
+    "analytics",
+    "review",
+    "task",
+  ],
     app = [
       "app-profile",
       "post-details",
@@ -132,10 +132,10 @@ const SideBar = () => {
       "map-jqvmap",
       "uc-lightgallery",
     ],
-	redux = [
-       "redux-form",
-	   "redux-wizard",    
-       "todo",
+    redux = [
+      "redux-form",
+      "redux-wizard",
+      "todo",
     ],
     widget = ["widget-basic"],
     forms = [
@@ -165,43 +165,49 @@ const SideBar = () => {
     ];
   return (
     <div
-      className={`deznav ${iconHover} ${
-        sidebarposition.value === "fixed" &&
+      className={`deznav ${iconHover} ${sidebarposition.value === "fixed" &&
         sidebarLayout.value === "horizontal" &&
         headerposition.value === "static"
-          ? scrollPosition > 120
-            ? "fixed"
-            : ""
+        ? scrollPosition > 120
+          ? "fixed"
           : ""
-      }`}
+        : ""
+        }`}
     >
       <PerfectScrollbar className="deznav-scroll">
         <MM className="metismenu" id="menu">
+
           <li className={`${deshBoard.includes(path) ? "mm-active" : ""}`}>
-            <Link className="has-arrow ai-icon" to="#" >
+            <Link to="/dashboard" className="ai-icon" >
               <i className="flaticon-025-dashboard"></i>
-              <span className="nav-text">Dashboard</span>
+              <span className="nav-text">Home</span>
             </Link>
-            <ul >
-              <li><Link className={`${path === "" ? "mm-active" : "dashboard"}`} to="/dashboard"> Dashboard Light</Link></li>
-				<li>
-					<Link className={`${path === "dashboard-dark" ? "mm-active" : ""}`} to="/dashboard-dark"> 
-						Dashboard Dark
-					</Link>
-				</li>
-				<li><Link className={`${path === "order-list" ? "mm-active" : ""}`} to="/order-list">Orders</Link></li>
-				<li>
-					<Link className={`${path === "order-details" ? "mm-active" : ""}`} to="/order-details">Order Details</Link>
-				</li>
-				
-				<li><Link className={`${path === "customers" ? "mm-active" : ""}`} to="/customers">Customers</Link></li>
-				<li><Link className={`${path === "analytics" ? "mm-active" : ""}`} to="/analytics">Analytics</Link></li>
-				<li><Link className={`${path === "review" ? "mm-active" : ""}`} to="/review">Review</Link></li>
-				
-				<li><Link className={`${path === "task" ? "mm-active" : ""}`} to="/task">Task</Link></li>
-            </ul>
           </li>
           <li className={`${app.includes(path) ? "mm-active" : ""}`}>
+            <Link to="/email-compose" className="ai-icon" >
+              <i className="flaticon-025-dashboard"></i>
+              <span className="nav-text">Features</span>
+            </Link>
+          </li>
+          <li className={`${charts.includes(path) ? "mm-active" : ""}`}>
+            <Link to="/chart-sparkline" className="ai-icon" >
+              <i className="flaticon-041-graph"></i>
+              <span className="nav-text">Collection Charts</span>
+            </Link>
+          </li>
+          <li className={`${bootstrap.includes(path) ? "mm-active" : ""}`}>
+            <Link to="/chart-apexchart" className="ai-icon" >
+              <i className="flaticon-025-dashboard"></i>
+              <span className="nav-text">Wallet Analysis</span>
+            </Link>
+          </li>
+          <li className={`${plugins.includes(path) ? "mm-active" : ""}`}>
+            <Link to="/redux-form" className="ai-icon" >
+              <i className="flaticon-087-stop"></i>
+              <span className="nav-text">Bulk Buy</span>
+            </Link>
+          </li>
+          {/* <li className={`${app.includes(path) ? "mm-active" : ""}`}>
             <Link className="has-arrow ai-icon" to="#" >
               <i className="flaticon-050-info"></i>
               <span className="nav-text">Apps</span>
@@ -210,22 +216,22 @@ const SideBar = () => {
               <li><Link className={`${path === "app-profile" ? "mm-active" : ""}`} to="/app-profile">Profile</Link></li>
               <li><Link className={`${path === "post-details" ? "mm-active" : ""}`} to="/post-details">Post Details</Link></li>
               <li className={`${email.includes(path) ? "mm-active" : ""}`}><Link className="has-arrow" to="#" >Email</Link>
-                <ul  className={`${email.includes(path) ? "mm-show" : ""}`}>
-                  <li><Link className={`${ path === "email-compose" ? "mm-active" : ""}`} to="/email-compose">Compose</Link></li>
+                <ul className={`${email.includes(path) ? "mm-show" : ""}`}>
+                  <li><Link className={`${path === "email-compose" ? "mm-active" : ""}`} to="/email-compose">Compose</Link></li>
                   <li><Link className={`${path === "email-inbox" ? "mm-active" : ""}`} to="/email-inbox">Inbox</Link></li>
                   <li><Link className={`${path === "email-read" ? "mm-active" : ""}`} to="/email-read">Read</Link></li>
                 </ul>
               </li>
-              <li><Link className={`${path === "app-calender" ? "mm-active" : ""}`}to="/app-calender">Calendar</Link></li>
+              <li><Link className={`${path === "app-calender" ? "mm-active" : ""}`} to="/app-calender">Calendar</Link></li>
               <li className={`${shop.includes(path) ? "mm-active" : ""}`}><Link className="has-arrow" to="#" >Shop</Link>
-                <ul  className={`${shop.includes(path) ? "mm-show" : ""}`}>
-                  <li><Link className={`${ path === "ecom-product-grid" ? "mm-active" : ""}`} to="/ecom-product-grid">Product Grid</Link></li>
-                  <li><Link className={`${ path === "ecom-product-list" ? "mm-active" : ""}`} to="/ecom-product-list">Product List</Link></li>
-                  <li><Link className={`${ path === "ecom-product-detail" ? "mm-active" : "" }`} to="/ecom-product-detail">Product Details</Link></li>
-                  <li><Link className={`${ path === "ecom-product-order" ? "mm-active" : "" }`} to="/ecom-product-order">Order</Link></li>
-                  <li><Link className={`${ path === "ecom-checkout" ? "mm-active" : ""}`} to="/ecom-checkout">Checkout</Link></li>
-                  <li><Link className={`${ path === "ecom-invoice" ? "mm-active" : "" }`} to="/ecom-invoice">Invoice</Link></li>
-                  <li><Link className={`${ path === "ecom-customers" ? "mm-active" : "" }`} to="/ecom-customers">Customers</Link></li>
+                <ul className={`${shop.includes(path) ? "mm-show" : ""}`}>
+                  <li><Link className={`${path === "ecom-product-grid" ? "mm-active" : ""}`} to="/ecom-product-grid">Product Grid</Link></li>
+                  <li><Link className={`${path === "ecom-product-list" ? "mm-active" : ""}`} to="/ecom-product-list">Product List</Link></li>
+                  <li><Link className={`${path === "ecom-product-detail" ? "mm-active" : ""}`} to="/ecom-product-detail">Product Details</Link></li>
+                  <li><Link className={`${path === "ecom-product-order" ? "mm-active" : ""}`} to="/ecom-product-order">Order</Link></li>
+                  <li><Link className={`${path === "ecom-checkout" ? "mm-active" : ""}`} to="/ecom-checkout">Checkout</Link></li>
+                  <li><Link className={`${path === "ecom-invoice" ? "mm-active" : ""}`} to="/ecom-invoice">Invoice</Link></li>
+                  <li><Link className={`${path === "ecom-customers" ? "mm-active" : ""}`} to="/ecom-customers">Customers</Link></li>
                 </ul>
               </li>
             </ul>
@@ -241,7 +247,7 @@ const SideBar = () => {
                   className={`${path === "chart-rechart" ? "mm-active" : ""}`}
                   to="/chart-rechart"
                 >
-					RechartJs
+                  RechartJs
                 </Link>
               </li>
               <li>
@@ -414,37 +420,37 @@ const SideBar = () => {
               </li>
             </ul>
           </li>
-			<li className={`${plugins.includes(path) ? "mm-active" : ""}`}>
-				<Link className="has-arrow ai-icon" to="#" >
-					<i className="flaticon-045-heart"></i><span className="nav-text">Plugins</span>
-				</Link>
-				<ul >
-				  <li><Link className={`${path === "uc-select2" ? "mm-active" : ""}`} to="/uc-select2">Select 2</Link></li>
-				  <li><Link className={`${path === "uc-nestable" ? "mm-active" : ""}`} to="/uc-nestable">Nestedable</Link></li>
-				  <li><Link className={`${path === "uc-noui-slider" ? "mm-active" : ""}`} to="/uc-noui-slider">Noui Slider</Link></li>
-				  <li><Link className={`${path === "uc-sweetalert" ? "mm-active" : ""}`} to="/uc-sweetalert">Sweet Alert</Link></li>
-				  <li><Link className={`${path === "uc-toastr" ? "mm-active" : ""}`} to="/uc-toastr">Toastr</Link></li>
-				  <li><Link className={`${path === "map-jqvmap" ? "mm-active" : ""}`} to="/map-jqvmap">Jqv Map</Link></li>
-				  <li><Link className={`${path === "uc-lightgallery" ? "mm-active" : ""}`} to="/uc-lightgallery">Light Gallery</Link></li>
-				</ul>
-			</li>
-			<li className={`${redux.includes(path) ? "mm-active" : ""}`}>
-                    <Link className="has-arrow ai-icon" to="#" >
-                        <i className="flaticon-087-stop"></i><span className="nav-text">Redux</span>
-                    </Link>
-                <ul>
-                  <li><Link className={`${path === "todo" ? "mm-active" : ""}`} to="/todo">Todo</Link></li>
-                  <li><Link className={`${path === "redux-form" ? "mm-active" : ""}`} to="/redux-form">Redux Form</Link></li>
-                  <li><Link className={`${path === "redux-wizard" ? "mm-active" : ""}`} to="/redux-wizard">Redux Wizard</Link></li>
-                </ul>
-            </li>
+          <li className={`${plugins.includes(path) ? "mm-active" : ""}`}>
+            <Link className="has-arrow ai-icon" to="#" >
+              <i className="flaticon-045-heart"></i><span className="nav-text">Plugins</span>
+            </Link>
+            <ul >
+              <li><Link className={`${path === "uc-select2" ? "mm-active" : ""}`} to="/uc-select2">Select 2</Link></li>
+              <li><Link className={`${path === "uc-nestable" ? "mm-active" : ""}`} to="/uc-nestable">Nestedable</Link></li>
+              <li><Link className={`${path === "uc-noui-slider" ? "mm-active" : ""}`} to="/uc-noui-slider">Noui Slider</Link></li>
+              <li><Link className={`${path === "uc-sweetalert" ? "mm-active" : ""}`} to="/uc-sweetalert">Sweet Alert</Link></li>
+              <li><Link className={`${path === "uc-toastr" ? "mm-active" : ""}`} to="/uc-toastr">Toastr</Link></li>
+              <li><Link className={`${path === "map-jqvmap" ? "mm-active" : ""}`} to="/map-jqvmap">Jqv Map</Link></li>
+              <li><Link className={`${path === "uc-lightgallery" ? "mm-active" : ""}`} to="/uc-lightgallery">Light Gallery</Link></li>
+            </ul>
+          </li>
+          <li className={`${redux.includes(path) ? "mm-active" : ""}`}>
+            <Link className="has-arrow ai-icon" to="#" >
+              <i className="flaticon-087-stop"></i><span className="nav-text">Redux</span>
+            </Link>
+            <ul>
+              <li><Link className={`${path === "todo" ? "mm-active" : ""}`} to="/todo">Todo</Link></li>
+              <li><Link className={`${path === "redux-form" ? "mm-active" : ""}`} to="/redux-form">Redux Form</Link></li>
+              <li><Link className={`${path === "redux-wizard" ? "mm-active" : ""}`} to="/redux-wizard">Redux Wizard</Link></li>
+            </ul>
+          </li> */}
           <li className={`${widget.includes(path) ? "mm-active" : ""}`}>
             <Link to="widget-basic" className="ai-icon" >
               <i className="flaticon-013-checkmark"></i>
               <span className="nav-text">Widget</span>
             </Link>
           </li>
-          <li className={`${forms.includes(path) ? "mm-active" : ""}`}>
+          {/* <li className={`${forms.includes(path) ? "mm-active" : ""}`}>
             <Link className="has-arrow ai-icon" to="#" >
               <i className="flaticon-072-printer"></i>
               <span className="nav-text forms">Forms</span>
@@ -468,9 +474,8 @@ const SideBar = () => {
               </li>
               <li>
                 <Link
-                  className={`${
-                    path === "form-editor-summernote" ? "mm-active" : ""
-                  }`}
+                  className={`${path === "form-editor-summernote" ? "mm-active" : ""
+                    }`}
                   to="/form-editor-summernote"
                 >
                   Summernote
@@ -486,9 +491,8 @@ const SideBar = () => {
               </li>
               <li>
                 <Link
-                  className={`${
-                    path === "form-validation-jquery" ? "mm-active" : ""
-                  }`}
+                  className={`${path === "form-validation-jquery" ? "mm-active" : ""
+                    }`}
                   to="/form-validation-jquery"
                 >
                   Form Validate
@@ -499,26 +503,26 @@ const SideBar = () => {
           <li className={`${table.includes(path) ? "mm-active" : ""}`}>
             <Link className="has-arrow ai-icon" to="#" ><i className="flaticon-043-menu"></i><span className="nav-text">Table</span></Link>
             <ul>
-				<li>
-					<Link className={`${ path === "table-filtering" ? "mm-active" : "" }`} to="/table-filtering">
-						Table Filtering
-					</Link>
-				</li>
-				<li>
-					<Link className={`${ path === "table-sorting" ? "mm-active" : "" }`} to="/table-sorting">
-						Table Sorting
-					</Link>
-				</li>
-				<li>
-					<Link className={`${ path === "table-bootstrap-basic" ? "mm-active" : "" }`} to="/table-bootstrap-basic">
-						Bootstrap
-					</Link>
-				</li>
-				<li>
-					<Link className={`${ path === "table-datatable-basic" ? "mm-active" : ""}`} to="/table-datatable-basic">
-						Datatable
-					</Link>
-				</li>
+              <li>
+                <Link className={`${path === "table-filtering" ? "mm-active" : ""}`} to="/table-filtering">
+                  Table Filtering
+                </Link>
+              </li>
+              <li>
+                <Link className={`${path === "table-sorting" ? "mm-active" : ""}`} to="/table-sorting">
+                  Table Sorting
+                </Link>
+              </li>
+              <li>
+                <Link className={`${path === "table-bootstrap-basic" ? "mm-active" : ""}`} to="/table-bootstrap-basic">
+                  Bootstrap
+                </Link>
+              </li>
+              <li>
+                <Link className={`${path === "table-datatable-basic" ? "mm-active" : ""}`} to="/table-datatable-basic">
+                  Datatable
+                </Link>
+              </li>
             </ul>
           </li>
           <li className={`${pages.includes(path) ? "mm-active" : ""}`}>
@@ -530,35 +534,34 @@ const SideBar = () => {
               <li className={`${error.includes(path) ? "mm-active" : ""}`}>
                 <Link className="has-arrow" to="#" >Error</Link>
                 <ul>
-                  <li><Link className={`${ path === "page-error-400" ? "mm-active" : "" }`} to="/page-error-400">Error 400</Link></li>
-                  <li><Link className={`${ path === "page-error-403" ? "mm-active" : "" }`} to="/page-error-403">Error 403</Link></li>
-                  <li><Link className={`${ path === "page-error-404" ? "mm-active" : "" }`} to="/page-error-404">Error 404</Link></li>
-                  <li><Link className={`${ path === "page-error-500" ? "mm-active" : "" }`} to="/page-error-500">Error 500</Link></li>
-                  <li><Link className={`${ path === "page-error-503" ? "mm-active" : "" }`} to="/page-error-503">Error 503</Link></li>
+                  <li><Link className={`${path === "page-error-400" ? "mm-active" : ""}`} to="/page-error-400">Error 400</Link></li>
+                  <li><Link className={`${path === "page-error-403" ? "mm-active" : ""}`} to="/page-error-403">Error 403</Link></li>
+                  <li><Link className={`${path === "page-error-404" ? "mm-active" : ""}`} to="/page-error-404">Error 404</Link></li>
+                  <li><Link className={`${path === "page-error-500" ? "mm-active" : ""}`} to="/page-error-500">Error 500</Link></li>
+                  <li><Link className={`${path === "page-error-503" ? "mm-active" : ""}`} to="/page-error-503">Error 503</Link></li>
                 </ul>
               </li>
               <li>
                 <Link
-                  className={`${
-                    path === "page-lock-screen" ? "mm-active" : ""
-                  }`}
+                  className={`${path === "page-lock-screen" ? "mm-active" : ""
+                    }`}
                   to="/page-lock-screen"
                 >
                   Lock Screen
                 </Link>
               </li>
             </ul>
-          </li>
+          </li> */}
         </MM>
-		<div className="plus-box">
-			<img src={plus} alt="" />
-			<h5 className="fs-18 font-w700">Add Menus</h5>
-			<p className="fs-14 font-w400">Manage your food <br />and beverages menus<i className="fas fa-arrow-right ms-3"></i></p>
-		</div>
-		<div className="copyright">
-			<p><strong>Lezato Restaurant Admin</strong> © 2021 All Rights Reserved</p>
-			<p className="fs-12">Made with <span className="heart"></span> by DexignZone</p>
-		</div>
+        <div className="plus-box">
+          <img src={plus} alt="" />
+          <h5 className="fs-18 font-w700">Add Menus</h5>
+          <p className="fs-14 font-w400">Manage your food <br />and beverages menus<i className="fas fa-arrow-right ms-3"></i></p>
+        </div>
+        <div className="copyright">
+          <p><strong>Lezato Restaurant Admin</strong> © 2021 All Rights Reserved</p>
+          <p className="fs-12">Made with <span className="heart"></span> by DexignZone</p>
+        </div>
       </PerfectScrollbar>
     </div>
   );

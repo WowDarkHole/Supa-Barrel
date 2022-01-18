@@ -34,6 +34,11 @@ export const COLUMNS = [
 		Footer: 'Phone',
 		accessor: 'age',
 	},
+	{
+		Header: 'Floor',
+		Footer: 'Floor',
+		accessor: 'floor',
+	}
 ]
 
 export const GROUPED_COLUMNS = [

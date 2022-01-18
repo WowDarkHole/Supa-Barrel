@@ -1,8 +1,9 @@
 import React, { useMemo } from 'react';
 import { useTable, useSortBy } from 'react-table';
 import PageTitle from "../../../layouts/PageTitle";
-import MOCK_DATA from './MOCK_DATA_3.json';
+import MOCK_DATA from './MOCK_DATA_4.json';
 import { COLUMNS } from './Columns';
+import TableRow from './TableRow';
 //import './table.css';
 
 export const SortingTable = () => {
@@ -50,15 +51,25 @@ export const SortingTable = () => {
 								</thead>
 								<tbody {...getTableBodyProps()}>
 
-									{rows.map((row) => {
+									{rows.map((row, index) => {
 										prepareRow(row)
 										return (
-											<tr {...row.getRowProps()}>
-												{row.cells.map((cell) => {
-													return <td {...cell.getCellProps()}> {cell.render('Cell')} </td>
-												})}
+											<TableRow key={index} index={index} row={row}></TableRow>
+											// <tr {...row.getRowProps()}>
+											// 	{row.cells.map((cell, index) =>
+											// 		index !== row?.cells?.length - 1
+											// 			? <td {...cell.getCellProps()}> {cell.render('Cell')} </td>
+											// 			: <td>
+											// 				<Chart
+											// 					options={graphMockup.options}
+											// 					series={graphMockup.series}
+											// 					type="area"
+											// 					height={150}
+											// 				/>
+											// 			</td>
+											// 	)}
 
-											</tr>
+											// </tr>
 										)
 									})}
 								</tbody>

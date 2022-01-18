@@ -22,7 +22,7 @@ const BasicDatatable = () => {
   // use effect
   useEffect(() => {
     setData(document.querySelectorAll("#job_data tbody tr"));
-   // chackboxFun();
+    // chackboxFun();
   }, [test]);
 
   // Active pagginarion
@@ -38,7 +38,7 @@ const BasicDatatable = () => {
     chageData(activePag.current * sort, (activePag.current + 1) * sort);
     settest(i);
   };
- 
+
 
   return (
     <div className="col-12">
@@ -209,9 +209,8 @@ const BasicDatatable = () => {
                       <Link
                         key={i}
                         to="/table-datatable-basic"
-                        className={`paginate_button  ${
-                          activePag.current === i ? "current" : ""
-                        } `}
+                        className={`paginate_button  ${activePag.current === i ? "current" : ""
+                          } `}
                         onClick={() => onClick(i)}
                       >
                         {number}
