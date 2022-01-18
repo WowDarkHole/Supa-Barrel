@@ -2,23 +2,44 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PerfectScrollbar from "react-perfect-scrollbar";
 //Images
-import MenuImg1 from './../../../../images/menu/pic1.jpg';
-import MenuImg2 from './../../../../images/menu/pic2.jpg';
-import MenuImg3 from './../../../../images/menu/pic3.jpg';
-import MenuImg4 from './../../../../images/menu/pic4.jpg';
+
+import contact1 from './../../../../images/contacts/m1.png';
+import contact2 from './../../../../images/contacts/m2.png';
+import contact3 from './../../../../images/contacts/m3.png';
+import contact4 from './../../../../images/contacts/m4.png';
+import contact5 from './../../../../images/contacts/m5.png';
+import contact6 from './../../../../images/contacts/m6.png';
+import contact7 from './../../../../images/contacts/m7.png';
 
 const productBlog = [
-	{ Pid: '#1', title: 'Cool Cats NFT', Image: MenuImg1 },
-	{ Pid: '#2', title: 'Moon Boyz', Image: MenuImg2 },
-	{ Pid: '#3', title: 'Frog Land NFT', Image: MenuImg3 },
-	{ Pid: '#4', title: 'Wulfz NFT', Image: MenuImg4 },
-	{ Pid: '#5', title: 'CryptoPunk', Image: MenuImg1 },
-	{ Pid: '#3', title: 'VeeFriends', Image: MenuImg3 },
-	{ Pid: '#4', title: 'Crypto Baristas', Image: MenuImg4 },
-	{ Pid: '#5', title: 'Meka Verse', Image: MenuImg1 },
-	{ Pid: '#3', title: 'Nouns', Image: MenuImg3 },
-	{ Pid: '#4', title: 'Adam Bomb Squad', Image: MenuImg4 },
-	{ Pid: '#5', title: 'Decentraland', Image: MenuImg1 },
+	{
+		id: "#1", image: contact1, title: 'Cool Cats NFT',
+		quntity: '9999x', price: '15k ETH', totalprice: '11,523 ETH',
+	},
+	{
+		id: "#2", image: contact2, title: 'Moon Boyz',
+		quntity: '4444x', price: '17k ETH', totalprice: '16,543 ETH',
+	},
+	{
+		id: "#3", image: contact3, title: 'Frog Land NFT',
+		quntity: '7777x', price: '11k ETH', totalprice: '9,401 ETH',
+	},
+	{
+		id: "#4", image: contact4, title: 'Wulfz NFT',
+		quntity: '5555x', price: '1 ETH', totalprice: '1,543 ETH',
+	},
+	{
+		id: "#5", image: contact5, title: 'Crypto Punk',
+		quntity: '1x', price: '12k ETH', totalprice: '401 ETH',
+	},
+	{
+		id: "#6", image: contact6, title: 'Vee Friends',
+		quntity: '1x', price: '13k ETH', totalprice: '90,568 ETH',
+	},
+	{
+		id: "#7", image: contact7, title: 'Beeple',
+		quntity: '1x', price: '11k ETH', totalprice: '120,523 ETH',
+	},
 ];
 
 const DailyTrending = () => {
@@ -32,12 +53,12 @@ const DailyTrending = () => {
 				>
 					{productBlog.map((item, ind) => (
 						<div className="d-flex pb-3 mb-3 tr-row align-items-center border-bottom pe-3" key={ind}>
-							<span className="num">{item.Pid}</span>
+							<span className="num">{item.id}</span>
 							<div className="me-auto pe-3">
 								<Link to={"/ecom-product-grid"}><h2 className="text-black fs-22 font-w600">{item.title}</h2></Link>
-								<span className="text-black font-w600 d-inline-block me-3">$5.6 </span> <span className="fs-14">Order 89x</span>
+								<span className="text-black font-w600 d-inline-block me-3">{item.totalprice} </span> <span className="fs-14">{item.quntity}</span>
 							</div>
-							<Link to={"/ecom-product-grid"}><img src={item.Image} alt="" /></Link>
+							<Link to={"/ecom-product-grid"}><img src={item.image} alt="" /></Link>
 						</div>
 					))}
 				</PerfectScrollbar>

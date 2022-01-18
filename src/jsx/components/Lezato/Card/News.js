@@ -29,7 +29,7 @@ const News = () => {
               >
                 <span>10 minutes ago</span>
                 <h6 className="mb-0">
-                  Youtube, a video-sharing website, goes live{" "}
+                  Cool Cats NFT, a video-sharing website, goes live{" "}
                   <strong className="text-primary">$500</strong>.
                 </h6>
               </Link>
@@ -42,7 +42,7 @@ const News = () => {
               >
                 <span>20 minutes ago</span>
                 <h6 className="mb-0">
-                  New order placed{" "}
+                  New Minted NFTs{" "}
                   <strong className="text-info">#XF-2356.</strong>
                 </h6>
                 <p className="mb-0">
@@ -58,7 +58,7 @@ const News = () => {
               >
                 <span>30 minutes ago</span>
                 <h6 className="mb-0">
-                  john just buy your product{" "}
+                  john just buy your Vee Friends{" "}
                   <strong className="text-warning">Sell $250</strong>
                 </h6>
               </Link>
@@ -71,7 +71,7 @@ const News = () => {
               >
                 <span>15 minutes ago</span>
                 <h6 className="mb-0">
-                  StumbleUpon is acquired by eBay.{" "}
+                  StumbleUpon is acquired by Wulfz.{" "}
                 </h6>
               </Link>
             </li>
