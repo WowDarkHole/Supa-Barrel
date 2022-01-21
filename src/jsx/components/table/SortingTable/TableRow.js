@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { slideDown, slideUp } from './Anim';
 import { Row, Col, Card, Button, Dropdown, ButtonGroup } from "react-bootstrap";
 import Chart from "react-apexcharts";
+import { black } from 'material-ui/styles/colors';
 const TableRow = (props) => {
 
   const [expanded, setExpanded] = useState(false);
@@ -11,48 +12,69 @@ const TableRow = (props) => {
   const graphMockup = {
     series: [{
       name: "Floor",
-      data: [30, 40, 45, 50, 49, 60, 70, 91, 100]
+      data: [30, 40, 45, 50, 49, 60, 70]
     }],
     options: {
       chart: {
-        type: 'area',
-        height: 350,
-        zoom: {
-          enabled: false
-        },
+        height: 220,
+        type: "area",
         toolbar: {
           show: false,
-          autoSelected: 'pan'
-        }
+        },
+        sparkline: {
+          enabled: true,
+        },
+        zoom: {
+          enabled: true,
+          type: 'x',
+          autoScaleYaxis: false,
+          zoomedArea: {
+            fill: {
+              color: '#90CAF9',
+              opacity: 0.4
+            },
+            stroke: {
+              color: '#0D47A1',
+              opacity: 0.4,
+              width: 1
+            }
+          }
+        },
+        background: '#212130'
       },
       dataLabels: {
         enabled: false
       },
-      stroke: {
-        curve: 'straight'
-      },
-      labels: [1991, 1992, 1993, 1994, 2015, 2016, 2017, 2018, 2019],
       xaxis: {
-        type: 'datetime',
+        categories: [
+          "01 Jan",
+          "02 Jan",
+          "03 Jan",
+          "04 Jan",
+          "05 Jan",
+          "06 Jan",
+          "07 Jan"
+        ],
+        tooltip: {
+          enabled: false,
+        },
+        labels: {
+          show: false,
+        }
       },
       yaxis: {
-        opposite: true
-      },
-      legend: {
-        horizontalAlign: 'left'
-      },
-      tooltip: {
-        custom: function ({ series, seriesIndex, dataPointIndex, w }) {
-          return (
-            '<div class="arrow_box">' +
-            "<span>" +
-            w.globals.labels[dataPointIndex] +
-            ": " +
-            series[seriesIndex][dataPointIndex] +
-            "</span>" +
-            "</div>"
-          );
+        labels: {
+          show: false,
         }
+      },
+      theme: {
+        mode: 'dark'
+      },
+      grid: {
+        show: false
+      },
+      dataLabel: {
+        enabled: false,
       }
     },
   };
@@ -84,24 +106,24 @@ const TableRow = (props) => {
     <tr key="main" >
       {row.cells.map((cell, index) =>
         index !== row?.cells?.length - 1
-          ? <td {...cell.getCellProps()}> {cell.render('Cell')} </td>
-          : <td>
+          ? <td {...cell.getCellProps()} key={index}> {cell.render('Cell')} </td>
+          : <td key={index}>
             <Chart
               options={graphMockup.options}
               series={graphMockup.series}
               type="area"
-              height={150}
-              width={350}
+              height={100}
+              width={200}
             />
           </td>
       )}
       <td>
-        <Button className="me-2" variant="me-2 btn btn-outline-success btn-rounded" onClick={() => toggleExpander()}>
+        <Button variant="me-2 btn btn-outline-secondary btn-rounded" onClick={() => toggleExpander()}>
           <span>
             {
               expanded ?
-                <i className="bi bi-arrows-collapse" /> :
-                <i className="bi bi-arrows-expand" />
+                <i className="bi bi-chevron-down" /> :
+                <i className="bi bi-chevron-up" />
             }
           </span>
         </Button>

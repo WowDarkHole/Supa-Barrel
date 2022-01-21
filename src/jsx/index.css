@@ -45,6 +45,9 @@ tr.expandable > td > .inner {
   margin: 15px;
   overflow: hidden;
 }
+.border-black {
+  border-color: #000;
+}
 .testimonial-one img {
   display: unset !important;
   width: 90%;

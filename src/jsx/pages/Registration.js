@@ -1,38 +1,38 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { connect, useDispatch } from 'react-redux';
 import {
-    loadingToggleAction,
-    signupAction,
+  loadingToggleAction,
+  signupAction,
 } from '../../store/actions/AuthActions';
 // image
 import logo from "../../images/logo-full.png";
 
 function Register(props) {
-    const [email, setEmail] = useState('');
-    let errorsObj = { email: '', password: '' };
-    const [errors, setErrors] = useState(errorsObj);
-    const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
+  let errorsObj = { email: '', password: '' };
+  const [errors, setErrors] = useState(errorsObj);
+  const [password, setPassword] = useState('');
 
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-    function onSignUp(e) {
-        e.preventDefault();
-        let error = false;
-        const errorObj = { ...errorsObj };
-        if (email === '') {
-            errorObj.email = 'Email is Required';
-            error = true;
-        }
-        if (password === '') {
-            errorObj.password = 'Password is Required';
-            error = true;
-        }
-        setErrors(errorObj);
-        if (error) return;
-        dispatch(loadingToggleAction(true));
-        dispatch(signupAction(email, password, props.history));
+  function onSignUp(e) {
+    e.preventDefault();
+    let error = false;
+    const errorObj = { ...errorsObj };
+    if (email === '') {
+      errorObj.email = 'Email is Required';
+      error = true;
     }
+    if (password === '') {
+      errorObj.password = 'Password is Required';
+      error = true;
+    }
+    setErrors(errorObj);
+    if (error) return;
+    dispatch(loadingToggleAction(true));
+    dispatch(signupAction(email, password, props.history));
+  }
   return (
     <div className="authincation h-100 p-meddle">
       <div className="container h-100">
@@ -48,16 +48,16 @@ function Register(props) {
                       </Link>
                     </div>
                     <h4 className="text-center mb-4 ">Sign up your account</h4>
-					{props.errorMessage && (
-						<div className=''>
-							{props.errorMessage}
-						</div>
-					)}
-					{props.successMessage && (
-						<div className=''>
-							{props.successMessage}
-						</div>
-					)}
+                    {props.errorMessage && (
+                      <div className=''>
+                        {props.errorMessage}
+                      </div>
+                    )}
+                    {props.successMessage && (
+                      <div className=''>
+                        {props.successMessage}
+                      </div>
+                    )}
                     <form onSubmit={onSignUp}>
                       <div className="form-group mb-3">
                         <label className="mb-1 ">
@@ -74,27 +74,27 @@ function Register(props) {
                           <strong>Email</strong>
                         </label>
                         <input
-							value={email}
-							onChange={(e) => setEmail(e.target.value)}
-							className="form-control"
+                          value={email}
+                          onChange={(e) => setEmail(e.target.value)}
+                          className="form-control"
                           placeholder="hello@example.com"
                         />
                       </div>
-					  {errors.email && <div>{errors.email}</div>}
+                      {errors.email && <div>{errors.email}</div>}
                       <div className="form-group mb-3">
                         <label className="mb-1 ">
                           <strong>Password</strong>
                         </label>
                         <input
-							value={password}
-							onChange={(e) =>
-								setPassword(e.target.value)
-							}
+                          value={password}
+                          onChange={(e) =>
+                            setPassword(e.target.value)
+                          }
                           className="form-control"
                           defaultValue="Password"
                         />
                       </div>
-					  {errors.password && <div>{errors.password}</div>}
+                      {errors.password && <div>{errors.password}</div>}
                       <div className="text-center mt-4">
                         <button
                           type="submit"
@@ -123,13 +123,14 @@ function Register(props) {
   );
 };
 
-const mapStateToProps = (state) => {
-    return {
-        errorMessage: state.auth.errorMessage,
-        successMessage: state.auth.successMessage,
-        showLoading: state.auth.showLoading,
-    };
-};
+// const mapStateToProps = (state) => {
+//     return {
+//         errorMessage: state.auth.errorMessage,
+//         successMessage: state.auth.successMessage,
+//         showLoading: state.auth.showLoading,
+//     };
+// };
 
-export default connect(mapStateToProps)(Register);
+// export default connect(mapStateToProps)(Register);
+export default Register;
 

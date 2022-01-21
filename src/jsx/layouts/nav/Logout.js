@@ -14,7 +14,8 @@ function LogoutPage(props) {
     }
     return (
         <>
-            <Link className="dropdown-item ai-icon" onClick={onLogout}>
+            {/* <Link className="dropdown-item ai-icon" onClick={onLogout}> */}
+            <Link className="dropdown-item ai-icon">
                 <svg
                     id="icon-logout" xmlns="http://www.w3.org/2000/svg"
                     className="text-danger" width={18} height={18} viewBox="0 0 24 24"
@@ -29,10 +30,11 @@ function LogoutPage(props) {
         </>
     )
 }
-const mapStateToProps = (state) => {
-    return {
-        isAuthenticated: isAuthenticated(state),
-    };
-};
+// const mapStateToProps = (state) => {
+//     return {
+//         isAuthenticated: isAuthenticated(state),
+//     };
+// };
 
-export default withRouter(connect(mapStateToProps)(LogoutPage));
+// export default withRouter(connect(mapStateToProps)(LogoutPage));
+export default LogoutPage;

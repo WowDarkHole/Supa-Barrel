@@ -124,10 +124,10 @@ function Login(props) {
 													</div>
 												</div>
 												{/* <div className="form-group">
-								  <Link className="text-primary" to="page-forgot-password">
-									Forgot Password ?
-								  </Link>
-								</div> */}
+													<Link className="text-primary" to="page-forgot-password">
+													Forgot Password ?
+													</Link>
+												</div> */}
 											</div>
 											<div className="text-center">
 												<button
@@ -157,13 +157,13 @@ function Login(props) {
 	);
 };
 
-const mapStateToProps = (state) => {
-	console.log('state');
-	console.log(state);
-	return {
-		errorMessage: state.auth.errorMessage,
-		successMessage: state.auth.successMessage,
-		showLoading: state.auth.showLoading,
-	};
-};
-export default connect(mapStateToProps)(Login);
+// const mapStateToProps = (state) => {
+// 	console.log('state');
+// 	console.log(state);
+// 	return {
+// 		errorMessage: state.auth.errorMessage,
+// 		successMessage: state.auth.successMessage,
+// 		showLoading: state.auth.showLoading,
+// 	};
+// };
+export default Login;

@@ -55,26 +55,11 @@ export const SortingTable = () => {
 										prepareRow(row)
 										return (
 											<TableRow key={index} index={index} row={row}></TableRow>
-											// <tr {...row.getRowProps()}>
-											// 	{row.cells.map((cell, index) =>
-											// 		index !== row?.cells?.length - 1
-											// 			? <td {...cell.getCellProps()}> {cell.render('Cell')} </td>
-											// 			: <td>
-											// 				<Chart
-											// 					options={graphMockup.options}
-											// 					series={graphMockup.series}
-											// 					type="area"
-											// 					height={150}
-											// 				/>
-											// 			</td>
-											// 	)}
-
-											// </tr>
 										)
 									})}
 								</tbody>
 								{/* This is only for footer if u require */}
-								<tfoot>
+								{/* <tfoot>
 									{footerGroups.map(footerGroup => (
 										<tr {...footerGroup.getFooterGroupProps()}>
 											{footerGroup.headers.map(column => (
@@ -82,7 +67,7 @@ export const SortingTable = () => {
 											))}
 										</tr>
 									))}
-								</tfoot>
+								</tfoot> */}
 							</table>
 						</div>
 					</div>
