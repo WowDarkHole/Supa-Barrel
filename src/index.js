@@ -8,16 +8,20 @@ import reportWebVitals from "./reportWebVitals";
 import SimpleReactLightbox from "simple-react-lightbox";
 import ThemeContext from "./context/ThemeContext";
 
+import { DAppProvider } from "@usedapp/core";
+
 ReactDOM.render(
     <React.StrictMode>
         <Provider store={store}>
-            <SimpleReactLightbox>
-                <BrowserRouter basename='/react/demo'>
-                    <ThemeContext>
-                        <App />
-                    </ThemeContext>
-                </BrowserRouter>
-            </SimpleReactLightbox>
+            <DAppProvider config={{}}>
+                <SimpleReactLightbox>
+                    <BrowserRouter basename='/react/demo'>
+                        <ThemeContext>
+                            <App />
+                        </ThemeContext>
+                    </BrowserRouter>
+                </SimpleReactLightbox>
+            </DAppProvider>
         </Provider>
     </React.StrictMode>,
     document.getElementById("root")

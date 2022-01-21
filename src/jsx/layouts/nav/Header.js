@@ -9,34 +9,25 @@ import profile from "../../../images/avatar/profile-1.jpg";
 import avatar from "../../../images/avatar/1.jpg";
 import { Dropdown } from "react-bootstrap";
 import LogoutPage from './Logout';
+import { useEthers, useEtherBalance } from "@usedapp/core";
 
 const Header = ({ onNote }) => {
-  /* var path = window.location.pathname.split("/");
-  var name = path[path.length - 1].split("-");
-  var filterName = name.length >= 3 ? name.filter((n, i) => i > 0) : name;
-   var finalName = filterName.includes("app")
-    ? filterName.filter((f) => f !== "app")
-    : filterName.includes("ui")
-    ? filterName.filter((f) => f !== "ui")
-    : filterName.includes("uc")
-    ? filterName.filter((f) => f !== "uc")
-    : filterName.includes("basic")
-    ? filterName.filter((f) => f !== "basic")
-    : filterName.includes("jquery")
-    ? filterName.filter((f) => f !== "jquery")
-    : filterName.includes("table")
-    ? filterName.filter((f) => f !== "table")
-    : filterName.includes("page")
-    ? filterName.filter((f) => f !== "page")
-    : filterName.includes("email")
-    ? filterName.filter((f) => f !== "email")
-    : filterName.includes("ecom")
-    ? filterName.filter((f) => f !== "ecom")
-    : filterName.includes("chart")
-    ? filterName.filter((f) => f !== "chart")
-    : filterName.includes("editor")
-    ? filterName.filter((f) => f !== "editor")
-    : filterName;  */
+
+  const { activateBrowserWallet, account } = useEthers();
+
+  const handleConnectWallet = () => {
+    console.log("handled");
+    activateBrowserWallet();
+    console.log(account);
+  }
+
+  const logoutUser = () => {
+    if (window.ethereum && window.ethereum.isMetaMask) {
+      window.ethereum.on('accountsChanged', function (accounts) {
+        return () => window.ethereum.removeListener('accountsChanged', accounts);
+      });
+    }
+  }
   return (
     <div className="header">
       <div className="header-content">
@@ -62,8 +53,15 @@ const Header = ({ onNote }) => {
             </div>
             <ul className="navbar-nav header-right main-notification">
               <li className="nav-item recipe">
-                <Link to={"#"} className="btn btn-primary btn-rounded">Recipe Guide</Link>
+                {account ? <span className='btn btn-primary btn-rounded '>
+                  {account &&
+                    `${account.slice(0, 6)}...${account.slice(
+                      account.length - 4,
+                      account.length
+                    )}`}
+                </span> : <button className="btn btn-primary btn-rounded" onClick={() => handleConnectWallet()}> Connect Wallet </button>}
               </li>
+
               <Dropdown
                 as="li"
                 className="nav-item  notification_dropdown "
