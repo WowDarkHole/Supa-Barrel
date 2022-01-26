@@ -9,7 +9,31 @@ class ApexLine3 extends React.Component {
       series: [
         {
           name: "Running",
-          data: [20, 40, 20, 80, 40, 40, 20, 60, 60, 20, 110, 60],
+          data: [
+            10200,
+            10400,
+            10200,
+            10800,
+            10400,
+            11000,
+            10200,
+            10600,
+            10600,
+            11000,
+            11010,
+            10600,
+            12573,
+            12699,
+            12829,
+            12928,
+            13217,
+            13270,
+            13103,
+            12837,
+            12852,
+            12850,
+            12850,
+            12850],
         },
       ],
       options: {
@@ -34,6 +58,7 @@ class ApexLine3 extends React.Component {
           type: "text",
           categories: [
             "Jan",
+            "Jan",
             "Feb",
             "Mar",
             "Apr",
@@ -43,12 +68,24 @@ class ApexLine3 extends React.Component {
             "Aug",
             "Sep",
             "Oct",
+            "May",
+            "Jun",
+            "Jul",
+            "Aug",
+            "Sep",
+            "Oct",
+            "May",
+            "Jun",
+            "Jul",
+            "Aug",
+            "Sep",
+            "Oct",
             "Nov",
             "Dec",
           ],
-			
+
         },
-		
+
         colors: ["#fd683e"],
         markers: {
           size: [6],
