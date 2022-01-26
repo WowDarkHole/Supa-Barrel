@@ -1,6 +1,6 @@
 # [Barrel Frontend](https://barrel.tools/)
 
-This is the front-end repo for Exodia that allows users be part of the future of Greece.
+This is the front-end repo for Barrel that allows users be part of the future of UE.
 
 **_ Note We're currently in the process of switching to TypeScript. Please read this guide on how to use TypeScript for this repository. https://github.com/OlympusDAO/olympus-frontend/wiki/TypeScript-Refactor-General-Guidelines _**
 
