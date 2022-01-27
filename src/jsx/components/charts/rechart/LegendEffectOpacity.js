@@ -55,8 +55,8 @@ export default class Example extends PureComponent {
           <Area
             type="monotone"
             dataKey="uv"
-            stroke="#fd683e"
-            fill="#fd683e"
+            stroke="#EEB417"
+            fill="#EEB417"
             strokeWidth={2}
           />
         </AreaChart>

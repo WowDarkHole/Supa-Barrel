@@ -73,7 +73,7 @@
 @import url(./../vendor/perfect-scrollbar/css/perfect-scrollbar.css);
 @import url(./../vendor/metismenu/css/metisMenu.min.css);
 :root {
-  --primary: #fd683e;
+  --primary: #eeb417;
   --secondary: #624fd1;
   --primary-hover: #fc410c;
   --primary-dark: #a02502;
@@ -282,7 +282,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
   --bs-white: #fff;
   --bs-gray: #6c757d;
   --bs-gray-dark: #343a40;
-  --bs-primary: #fd683e;
+  --bs-primary: #eeb417;
   --bs-secondary: #624fd1;
   --bs-success: #68e365;
   --bs-info: #b48dd3;
@@ -493,7 +493,7 @@ sup {
 }
 
 a {
-  color: #fd683e;
+  color: #eeb417;
   text-decoration: underline;
 }
 a:hover {
@@ -2707,8 +2707,8 @@ textarea.form-control-lg {
   box-shadow: 0 0 0 0.25rem rgba(253, 104, 62, 0.25);
 }
 .form-check-input:checked {
-  background-color: #fd683e;
-  border-color: #fd683e;
+  background-color: #eeb417;
+  border-color: #eeb417;
 }
 .form-check-input:checked[type="checkbox"] {
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10l3 3l6-6'/%3e%3c/svg%3e");
@@ -2717,8 +2717,8 @@ textarea.form-control-lg {
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='2' fill='%23fff'/%3e%3c/svg%3e");
 }
 .form-check-input[type="checkbox"]:indeterminate {
-  background-color: #fd683e;
-  border-color: #fd683e;
+  background-color: #eeb417;
+  border-color: #eeb417;
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10h8'/%3e%3c/svg%3e");
 }
 .form-check-input:disabled {
@@ -2795,7 +2795,7 @@ textarea.form-control-lg {
   width: 1rem;
   height: 1rem;
   margin-top: -0.25rem;
-  background-color: #fd683e;
+  background-color: #eeb417;
   border: 0;
   border-radius: 1rem;
   transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out,
@@ -2822,7 +2822,7 @@ textarea.form-control-lg {
 .form-range::-moz-range-thumb {
   width: 1rem;
   height: 1rem;
-  background-color: #fd683e;
+  background-color: #eeb417;
   border: 0;
   border-radius: 1rem;
   transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out,
@@ -3204,8 +3204,8 @@ fieldset:disabled .btn {
 
 .btn-primary {
   color: #000;
-  background-color: #fd683e;
-  border-color: #fd683e;
+  background-color: #eeb417;
+  border-color: #eeb417;
 }
 .btn-primary:hover {
   color: #000;
@@ -3238,8 +3238,8 @@ fieldset:disabled .btn {
 .btn-primary:disabled,
 .btn-primary.disabled {
   color: #000;
-  background-color: #fd683e;
-  border-color: #fd683e;
+  background-color: #eeb417;
+  border-color: #eeb417;
 }
 
 .btn-secondary {
@@ -3523,13 +3523,13 @@ fieldset:disabled .btn {
 }
 
 .btn-outline-primary {
-  color: #fd683e;
-  border-color: #fd683e;
+  color: #eeb417;
+  border-color: #eeb417;
 }
 .btn-outline-primary:hover {
   color: #000;
-  background-color: #fd683e;
-  border-color: #fd683e;
+  background-color: #eeb417;
+  border-color: #eeb417;
 }
 .btn-check:focus + .btn-outline-primary,
 .btn-outline-primary:focus {
@@ -3541,8 +3541,8 @@ fieldset:disabled .btn {
 .btn-outline-primary.active,
 .btn-outline-primary.dropdown-toggle.show {
   color: #000;
-  background-color: #fd683e;
-  border-color: #fd683e;
+  background-color: #eeb417;
+  border-color: #eeb417;
 }
 .btn-check:checked + .btn-outline-primary:focus,
 .btn-check:active + .btn-outline-primary:focus,
@@ -3553,7 +3553,7 @@ fieldset:disabled .btn {
 }
 .btn-outline-primary:disabled,
 .btn-outline-primary.disabled {
-  color: #fd683e;
+  color: #eeb417;
   background-color: transparent;
 }
 
@@ -3804,7 +3804,7 @@ fieldset:disabled .btn {
 
 .btn-link {
   font-weight: 400;
-  color: #fd683e;
+  color: #eeb417;
   text-decoration: underline;
 }
 .btn-link:hover {
@@ -4114,7 +4114,7 @@ fieldset:disabled .btn {
 .dropdown-item:active {
   color: #fff;
   text-decoration: none;
-  background-color: #fd683e;
+  background-color: #eeb417;
 }
 .dropdown-item.disabled,
 .dropdown-item:disabled {
@@ -4158,7 +4158,7 @@ fieldset:disabled .btn {
 .dropdown-menu-dark .dropdown-item.active,
 .dropdown-menu-dark .dropdown-item:active {
   color: #fff;
-  background-color: #fd683e;
+  background-color: #eeb417;
 }
 .dropdown-menu-dark .dropdown-item.disabled,
 .dropdown-menu-dark .dropdown-item:disabled {
@@ -4340,7 +4340,7 @@ fieldset:disabled .btn {
 .nav-pills .nav-link.active,
 .nav-pills .show > .nav-link {
   color: #fff;
-  background-color: #fd683e;
+  background-color: #eeb417;
 }
 
 .nav-fill > .nav-link,
@@ -4988,7 +4988,7 @@ fieldset:disabled .btn {
 .page-link {
   position: relative;
   display: block;
-  color: #fd683e;
+  color: #eeb417;
   text-decoration: none;
   background-color: #fff;
   border: 1px solid #dee2e6;
@@ -5020,8 +5020,8 @@ fieldset:disabled .btn {
 .page-item.active .page-link {
   z-index: 3;
   color: #fff;
-  background-color: #fd683e;
-  border-color: #fd683e;
+  background-color: #eeb417;
+  border-color: #eeb417;
 }
 .page-item.disabled .page-link {
   color: #6c757d;
@@ -5211,7 +5211,7 @@ fieldset:disabled .btn {
   color: #fff;
   text-align: center;
   white-space: nowrap;
-  background-color: #fd683e;
+  background-color: #eeb417;
   transition: width 0.6s ease;
 }
 @media (prefers-reduced-motion: reduce) {
@@ -5293,8 +5293,8 @@ fieldset:disabled .btn {
 .list-group-item.active {
   z-index: 2;
   color: #fff;
-  background-color: #fd683e;
-  border-color: #fd683e;
+  background-color: #eeb417;
+  border-color: #eeb417;
 }
 .list-group-item + .list-group-item {
   border-top-width: 0;
@@ -6480,7 +6480,7 @@ fieldset:disabled .btn {
 }
 
 .link-primary {
-  color: #fd683e;
+  color: #eeb417;
 }
 .link-primary:hover,
 .link-primary:focus {
@@ -6891,7 +6891,7 @@ fieldset:disabled .btn {
 }
 
 .border-primary {
-  border-color: #fd683e !important;
+  border-color: #eeb417 !important;
 }
 
 .border-secondary {
@@ -7677,7 +7677,7 @@ fieldset:disabled .btn {
 }
 
 .text-primary {
-  color: #fd683e !important;
+  color: #eeb417 !important;
 }
 
 .text-secondary {
@@ -7749,7 +7749,7 @@ fieldset:disabled .btn {
 }
 
 .bg-primary {
-  background-color: #fd683e !important;
+  background-color: #eeb417 !important;
 }
 
 .bg-secondary {
@@ -13118,7 +13118,7 @@ svg.pulse-svg .third-circle {
   z-index: -1;
   margin: -0.1875rem;
   border-radius: inherit;
-  background: linear-gradient(to right, #fd683e, rgba(253, 163, 62, 0.75));
+  background: linear-gradient(to right, #eeb417, rgba(253, 163, 62, 0.75));
 }
 .navbar-expand .header-profile:after {
   content: "";
@@ -15916,7 +15916,7 @@ svg.pulse-svg .third-circle {
   }
   [direction="rtl"] .widget-timeline-icon li {
     border-left: 0;
-    border-right: 6px solid #fd683e;
+    border-right: 6px solid #eeb417;
   }
   [direction="rtl"] .widget-timeline-icon li a {
     padding: 0 30px 30px 0;
@@ -17385,7 +17385,7 @@ html[dir="rtl"]
 }
 
 :root {
-  --primary: #fd683e;
+  --primary: #eeb417;
   --secondary: #624fd1;
   --primary-hover: #fc410c;
   --primary-dark: #a02502;
@@ -17842,7 +17842,7 @@ The smaller device rules always should write below the bigger device rules
 Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Component
 */
 :root {
-  --primary: #fd683e;
+  --primary: #eeb417;
   --secondary: #624fd1;
   --primary-hover: #fc410c;
   --primary-dark: #a02502;
@@ -18286,7 +18286,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
   }
 }
 :root {
-  --primary: #fd683e;
+  --primary: #eeb417;
   --secondary: #624fd1;
   --primary-hover: #fc410c;
   --primary-dark: #a02502;
@@ -20075,7 +20075,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 .sidebar-right #header_color_3 + label,
 .sidebar-right #sidebar_color_3 + label,
 .sidebar-right #primary_color_3 + label {
-  background-color: #fd683e;
+  background-color: #eeb417;
 }
 .sidebar-right #nav_header_color_4 + label,
 .sidebar-right #header_color_4 + label,
@@ -20811,7 +20811,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 
 [data-nav-headerbg="color_3"][data-theme-version="dark"],
 [data-nav-headerbg="color_3"] {
-  --nav-headbg: #fd683e;
+  --nav-headbg: #eeb417;
 }
 [data-nav-headerbg="color_3"][data-theme-version="dark"] .nav-header,
 [data-nav-headerbg="color_3"] .nav-header {
@@ -22138,7 +22138,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 
 [data-sibebarbg="color_3"][data-theme-version="dark"],
 [data-sibebarbg="color_3"] {
-  --sidebar-bg: #fd683e;
+  --sidebar-bg: #eeb417;
   /* .hamburger .line{
   	background:$white;
   } */
@@ -22150,7 +22150,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
   li
   > ul,
 [data-sibebarbg="color_3"] .menu-toggle .deznav .metismenu li > ul {
-  background: #fd683e !important;
+  background: #eeb417 !important;
 }
 [data-sibebarbg="color_3"][data-theme-version="dark"][data-sidebar-style="full"][data-layout="vertical"]
   .deznav
@@ -22176,7 +22176,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
   > li:hover
   > a
   i {
-  color: #fd683e;
+  color: #eeb417;
   background: #fff;
   box-shadow: none;
 }
@@ -32708,7 +32708,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 
 [data-headerbg="color_3"][data-theme-version="dark"],
 [data-headerbg="color_3"] {
-  --headerbg: #fd683e;
+  --headerbg: #eeb417;
 }
 [data-headerbg="color_3"][data-theme-version="dark"] .hamburger .line,
 [data-headerbg="color_3"] .hamburger .line {
@@ -35209,7 +35209,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 }
 
 [data-primary="color_3"] {
-  --primary: #fd683e;
+  --primary: #eeb417;
   --secondary: #624fd1;
   --primary-hover: #fc410c;
   --primary-dark: #a02502;
@@ -35437,7 +35437,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 }
 
 :root {
-  --primary: #fd683e;
+  --primary: #eeb417;
   --secondary: #624fd1;
   --primary-hover: #fc410c;
   --primary-dark: #a02502;
@@ -35532,7 +35532,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 }
 [data-theme-version="transparent"] .header-left input:focus {
   box-shadow: none;
-  border-color: #fd683e;
+  border-color: #eeb417;
 }
 [data-theme-version="transparent"] .header-left input::placeholder {
   color: #fff;
@@ -35619,7 +35619,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 }
 
 :root {
-  --primary: #fd683e;
+  --primary: #eeb417;
   --secondary: #624fd1;
   --primary-hover: #fc410c;
   --primary-dark: #a02502;
@@ -38120,7 +38120,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 }
 
 :root {
-  --primary: #fd683e;
+  --primary: #eeb417;
   --secondary: #624fd1;
   --primary-hover: #fc410c;
   --primary-dark: #a02502;
@@ -38747,7 +38747,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 }
 
 :root {
-  --primary: #fd683e;
+  --primary: #eeb417;
   --secondary: #624fd1;
   --primary-hover: #fc410c;
   --primary-dark: #a02502;
@@ -39073,7 +39073,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 }
 
 :root {
-  --primary: #fd683e;
+  --primary: #eeb417;
   --secondary: #624fd1;
   --primary-hover: #fc410c;
   --primary-dark: #a02502;
@@ -39126,7 +39126,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 }
 
 :root {
-  --primary: #fd683e;
+  --primary: #eeb417;
   --secondary: #624fd1;
   --primary-hover: #fc410c;
   --primary-dark: #a02502;
@@ -39191,7 +39191,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 }
 
 :root {
-  --primary: #fd683e;
+  --primary: #eeb417;
   --secondary: #624fd1;
   --primary-hover: #fc410c;
   --primary-dark: #a02502;
@@ -45265,7 +45265,7 @@ table.dataTable.display tbody td {
   right: 0;
   top: 0;
   bottom: 0;
-  background: #fd683e;
+  background: #eeb417;
   opacity: 0.75;
   z-index: -1;
   border-top-left-radius: 5px;
@@ -50068,7 +50068,7 @@ svg.vert-move {
   }
   [direction="rtl"] .widget-timeline-icon li {
     border-left: 0;
-    border-right: 6px solid #fd683e;
+    border-right: 6px solid #eeb417;
   }
   [direction="rtl"] .widget-timeline-icon li a {
     padding: 0 30px 30px 0;
@@ -50313,7 +50313,7 @@ html[dir="rtl"]
 }
 
 :root {
-  --primary: #fd683e;
+  --primary: #eeb417;
   --secondary: #624fd1;
   --primary-hover: #fc410c;
   --primary-dark: #a02502;

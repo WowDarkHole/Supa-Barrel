@@ -13,14 +13,14 @@ class VisitorActivity extends Component {
       [25, 88, 25, 50, 70, 70, 60, 70, 50, 60, 50, 70],
     ];
     const data = {
-      labels: [ "01", "02", "03", "04","05", "06","07", "08","09","10","11","12",],
+      labels: ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12",],
       datasets: [
         {
           label: "My First dataset",
           data: activityData[this.props.dataActive],
           borderColor: "rgba(253, 109, 62, 1)",
           borderWidth: "0",
-          backgroundColor: "#fd683e",
+          backgroundColor: "#EEB417",
         },
       ],
     };

@@ -26,7 +26,7 @@ const Wizard = () => {
     marginRight: "1rem",
   };
   const nextStyle = {
-    background: "#fd683e",
+    background: "#EEB417",
     borderWidth: "0px",
     color: "#fff",
     borderRadius: "4px",

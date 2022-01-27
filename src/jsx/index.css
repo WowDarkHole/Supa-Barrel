@@ -1,6 +1,42 @@
 .border-yellow {
   border-color: yellow !important;
 }
+.width-10 {
+  width: 10px !important;
+}
+.width-15 {
+  width: 15px !important;
+}
+.width-20 {
+  width: 20px !important;
+}
+.width-25 {
+  width: 25px !important;
+}
+.width-50 {
+  width: 50px !important;
+}
+.width-75 {
+  width: 75px !important;
+}
+.width-100 {
+  width: 100px !important;
+}
+.width-200 {
+  width: 200px !important;
+}
+.width-250 {
+  width: 250px !important;
+}
+.width-300 {
+  width: 300px !important;
+}
+.width-400 {
+  width: 400px !important;
+}
+.width-500 {
+  width: 500px !important;
+}
 .height-50 {
   height: 50px !important;
 }
@@ -12,6 +48,9 @@
 }
 .height-200 {
   height: 200px !important;
+}
+.height-250 {
+  height: 250px !important;
 }
 .height-300 {
   height: 300px !important;
@@ -306,7 +345,7 @@ a:focus {
 
 .dd .nestable-item-name {
   color: #fff;
-  background: #fd683e;
+  background: #eeb417;
   display: block;
   height: 35px;
   margin: 5px 0;

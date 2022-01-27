@@ -8,7 +8,7 @@ import PageTitle from "../../../../layouts/PageTitle";
 const ProductGrid = () => {
    return (
       <Fragment>
-         <PageTitle activeMenu="Blank" motherMenu="Layout" />
+         {/* <PageTitle activeMenu="Blank" motherMenu="Layout" /> */}
          <div className="row">
             {productData.map((product) => (
                <Products key={product.key} product={product} />

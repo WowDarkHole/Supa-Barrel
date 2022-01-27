@@ -33,7 +33,7 @@ class ApexLine5 extends React.Component {
         },
         stroke: {
           width: [2, 2],
-          colors: ["#fd683e", "#709fba"],
+          colors: ["#EEB417", "#709fba"],
           curve: "straight",
         },
         legend: {
@@ -46,7 +46,7 @@ class ApexLine5 extends React.Component {
             );
           },
           markers: {
-            fillColors: ["#fd683e", "#709fba"],
+            fillColors: ["#EEB417", "#709fba"],
             width: 19,
             height: 19,
             strokeWidth: 0,
@@ -56,15 +56,15 @@ class ApexLine5 extends React.Component {
         markers: {
           size: 6,
           border: 0,
-          colors: ["#fd683e", "#709fba"],
+          colors: ["#EEB417", "#709fba"],
           hover: {
             size: 6,
           },
         },
         xaxis: {
-			categories: ["Jan","Feb","Mar","Apr","May","Jun","Jul",
-				"Aug","Sep","Oct","Nov","Dec","10 Jan","11 Jan","12 Jan",
-			],
+          categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul",
+            "Aug", "Sep", "Oct", "Nov", "Dec", "10 Jan", "11 Jan", "12 Jan",
+          ],
         },
         yaxis: {
           labels: {

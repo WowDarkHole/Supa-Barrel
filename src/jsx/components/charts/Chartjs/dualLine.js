@@ -8,10 +8,10 @@ const data = {
     {
       label: "My First dataset",
       data: [25, 20, 60, 41, 66, 45, 80],
-      borderColor: "#fd683e",
+      borderColor: "#EEB417",
       borderWidth: "2",
       backgroundColor: "transparent",
-      pointBackgroundColor: "#fd683e",
+      pointBackgroundColor: "#EEB417",
     },
     {
       label: "My First dataset",

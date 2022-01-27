@@ -13,7 +13,7 @@ class SalesPieChart extends React.Component {
 				},
 				plotOptions: {
 					radialBar: {
-						startAngle:-160,
+						startAngle: -160,
 						endAngle: 160,
 						dataLabels: {
 							name: {
@@ -25,19 +25,19 @@ class SalesPieChart extends React.Component {
 						}
 					},
 				},
-				stroke:{
+				stroke: {
 					lineCap: 'round',
 				},
 				labels: ['Income', 'Income', 'Imcome'],
-				colors:['#FD683E', '#FFAF65','#FFE5A0'],
+				colors: ['#EEB417', '#FFAF65', '#FFE5A0'],
 				responsive: [{
 					breakpoint: 1601,
 					options: {
 						chart: {
-						  height: 250,
-						  type: 'radialBar',
+							height: 250,
+							type: 'radialBar',
 						},
-						
+
 					}
 				}]
 			},
@@ -48,10 +48,10 @@ class SalesPieChart extends React.Component {
 		return (
 			<div id="chart" >
 				<ReactApexChart
-				  options={this.state.options}
-				  series={this.state.series}
-				  type="radialBar"
-				  height={350}
+					options={this.state.options}
+					series={this.state.series}
+					type="radialBar"
+					height={350}
 				/>
 			</div>
 		);

@@ -12,7 +12,7 @@ class BarChart1 extends Component {
           data: [65, 59, 80, 81, 56, 55, 40],
           borderColor: "rgba(38, 88, 191, 1)",
           borderWidth: "0",
-          backgroundColor: "#fd683e",
+          backgroundColor: "#EEB417",
         },
       ],
     };

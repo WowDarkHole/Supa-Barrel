@@ -6,18 +6,18 @@ import PageTitle from "../../../../layouts/PageTitle";
 import StarRating from './StarRating';
 // images
 import avatar1 from "../../../../..//images/avatar/1.jpg";
-import product2 from "../../../../../images/product/2.jpg";
-import product3 from "../../../../../images/product/3.jpg";
-import product4 from "../../../../../images/product/4.jpg";
-import product5 from "../../../../../images/product/5.jpg";
-import product6 from "../../../../../images/product/6.jpg";
-import product7 from "../../../../../images/product/7.jpg";
+import product2 from "../../../../../images/product/2.png";
+import product3 from "../../../../../images/product/3.png";
+import product4 from "../../../../../images/product/4.png";
+import product5 from "../../../../../images/product/5.png";
+import product6 from "../../../../../images/product/6.png";
+import product7 from "../../../../../images/product/7.png";
 
 const ProductList = () => {
   const [reviewModal, setReviewModal] = useState(false);
   return (
     <Fragment>
-      <PageTitle activeMenu="Blank" motherMenu="Layout" />
+      {/* <PageTitle activeMenu="Blank" motherMenu="Layout" /> */}
 
       <div className="row">
         <div className="col-lg-12 col-xl-6">
@@ -500,8 +500,8 @@ const ProductList = () => {
                         <ul
                           id="stars"
                           className="d-flex justify-content-center align-items-center"
-                        >	
-						  <StarRating />
+                        >
+                          <StarRating />
                         </ul>
                       </div>
                     </div>

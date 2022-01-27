@@ -8,7 +8,7 @@ const data = {
     {
       label: "My First dataset",
       data: [25, 20, 60, 41, 66, 45, 80],
-      borderColor: "#fd683e",
+      borderColor: "#EEB417",
       borderWidth: "1",
       backgroundColor: "rgba(253, 104, 62, 0.5)",
     },

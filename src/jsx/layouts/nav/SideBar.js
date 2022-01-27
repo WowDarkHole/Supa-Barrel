@@ -1,6 +1,6 @@
 /// Menu
 import Metismenu from "metismenujs";
-import React, { Component, useContext, useEffect } from "react";
+import React, { Component, useContext, useEffect, useState } from "react";
 /// Scroll
 import PerfectScrollbar from "react-perfect-scrollbar";
 /// Link
@@ -53,14 +53,19 @@ const SideBar = () => {
     handleheartBlast.addEventListener('click', heartBlast);
 
   }, []);
+
   let scrollPosition = useScrollPosition();
   /// Path
-  let path = window.location.pathname;
-  path = path.split("/");
-  path = path[path.length - 1];
+  let prePath = window.location.pathname;
+  prePath = prePath.split("/");
+  prePath = prePath[prePath.length - 1];
+
+  const [path, setPath] = useState(prePath);
   /// Active menu
-  let deshBoard = [
+  let dashBoard = [
     "",
+    "demo",
+    "dashboard",
     "dashboard-dark",
     "order-list",
     "order-details",
@@ -86,22 +91,11 @@ const SideBar = () => {
       "ecom-product-detail",
     ],
     email = ["email-compose", "email-inbox", "email-read"],
-    shop = [
-      "ecom-product-grid",
-      "ecom-product-list",
-      "ecom-product-list",
-      "ecom-product-order",
-      "ecom-checkout",
-      "ecom-invoice",
-      "ecom-customers",
-      "ecom-product-detail",
-    ],
     charts = [
       "chart-rechart",
       "chart-flot",
       "chart-chartjs",
       "chart-chartist",
-      "chart-sparkline",
       "chart-apexchart",
     ],
     bootstrap = [
@@ -131,6 +125,7 @@ const SideBar = () => {
       "uc-noui-slider",
       "map-jqvmap",
       "uc-lightgallery",
+      "chart-sparkline",
     ],
     redux = [
       "redux-form",
@@ -176,39 +171,38 @@ const SideBar = () => {
     >
       <PerfectScrollbar className="deznav-scroll">
         <MM className="metismenu" id="menu">
-
-          <li className={`${deshBoard.includes(path) ? "mm-active" : ""}`}>
-            <Link to="/dashboard" className="ai-icon" >
+          <li className={`${dashBoard.includes(path) ? "mm-active" : ""}`}>
+            <Link to="/dashboard" className="ai-icon" onClick={() => setPath("dashboard")}>
               <i className="flaticon-025-dashboard"></i>
               <span className="nav-text">Home</span>
             </Link>
           </li>
-          <li className={`${app.includes(path) ? "mm-active" : ""}`}>
-            <Link to="/email-compose" className="ai-icon" >
+          <li className={`${email.includes(path) ? "mm-active" : ""}`}>
+            <Link to="/email-compose" className="ai-icon" onClick={() => setPath("email-compose")}>
               <i className="flaticon-025-dashboard"></i>
               <span className="nav-text">Features</span>
             </Link>
           </li>
           <li className={`${charts.includes(path) ? "mm-active" : ""}`}>
-            <Link to="/chart-apexchart" className="ai-icon" >
+            <Link to="/chart-apexchart" className="ai-icon" onClick={() => setPath("chart-apexchart")}>
               <i className="flaticon-041-graph"></i>
               <span className="nav-text">Collection Charts</span>
             </Link>
           </li>
-          <li className={`${bootstrap.includes(path) ? "mm-active" : ""}`}>
-            <Link to="/chart-sparkline" className="ai-icon" >
+          <li className={`${plugins.includes(path) ? "mm-active" : ""}`}>
+            <Link to="/chart-sparkline" className="ai-icon" onClick={() => setPath("chart-sparkline")} >
               <i className="flaticon-025-dashboard"></i>
               <span className="nav-text">Wallet Analysis</span>
             </Link>
           </li>
-          <li className={`${plugins.includes(path) ? "mm-active" : ""}`}>
-            <Link to="/redux-form" className="ai-icon" >
+          <li className={`${redux.includes(path) ? "mm-active" : ""}`}>
+            <Link to="/redux-form" className="ai-icon" onClick={() => setPath("redux-form")}>
               <i className="flaticon-087-stop"></i>
               <span className="nav-text">Bulk Buy</span>
             </Link>
           </li>
           <li className={`${widget.includes(path) ? "mm-active" : ""}`}>
-            <Link to="/widget-basic" className="ai-icon" >
+            <Link to="widget-basic" className="ai-icon" onClick={() => setPath("widget-basic")}>
               <i className="flaticon-013-checkmark"></i>
               <span className="nav-text">Rarity</span>
             </Link>

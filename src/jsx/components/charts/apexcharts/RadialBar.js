@@ -26,7 +26,7 @@ class ApexRedialBar extends React.Component {
               value: {
                 offsetY: 0,
                 fontSize: "34px",
-                color: "#fd683e",
+                color: "#EEB417",
                 formatter: function (val) {
                   return val + "%";
                 },
@@ -36,7 +36,7 @@ class ApexRedialBar extends React.Component {
         },
         fill: {
           type: "gradient",
-          colors: "#fd683e",
+          colors: "#EEB417",
           gradient: {
             shade: "dark",
             shadeIntensity: 0.15,
@@ -48,7 +48,7 @@ class ApexRedialBar extends React.Component {
         },
         stroke: {
           dashArray: 4,
-          colors: "#fd683e",
+          colors: "#EEB417",
         },
         labels: [""],
       },

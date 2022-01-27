@@ -10,7 +10,7 @@ class LineChart1 extends Component {
         {
           label: "My First dataset",
           data: [25, 20, 50, 41, 55, 45, 70],
-          borderColor: "#fd683e",
+          borderColor: "#EEB417",
           borderWidth: this.props.borderWidth ? this.props.borderWidth : "2",
           // pointBackgroundColor: "rgba(64, 24, 157, 1)",
           backgroundColor: "rgba(253, 104, 62, 0)",

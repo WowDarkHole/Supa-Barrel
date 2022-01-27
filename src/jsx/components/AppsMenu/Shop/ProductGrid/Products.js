@@ -8,14 +8,20 @@ const Products = ({ product: { previewImg, title, rating, price } }) => {
         <div className="card-body">
           <div className="new-arrival-product">
             <div className="new-arrivals-img-contnent">
-              <img className="img-fluid" src={previewImg} alt="" />
+              <img className="img-fluid height-300" src={previewImg} alt="" />
             </div>
             <div className="new-arrival-content text-center mt-3">
               <h4>
                 <Link to="/ecom-product-detail">{title}</Link>
               </h4>
               {rating}
-              <span className="price">${price}</span>
+              <span className="price">
+                <img src="https://storage.opensea.io/files/6f8e2979d428180222796ff4a33ab929.svg" className="width-15 me-2" />
+                {price}
+              </span>
+            </div>
+            <div className="justify-content-center text-center mt-4">
+              <button className="btn btn-primary px-5">Mint</button>
             </div>
           </div>
         </div>

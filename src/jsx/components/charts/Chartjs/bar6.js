@@ -22,7 +22,7 @@ class BarChart6 extends Component {
         {
           label: "Red",
           backgroundColor: "rgba(253, 104, 62, 1)",
-          hoverBackgroundColor: "#fd683e",
+          hoverBackgroundColor: "#EEB417",
           data: ["12", "12", "12", "12", "12", "12", "12"],
         },
       ],

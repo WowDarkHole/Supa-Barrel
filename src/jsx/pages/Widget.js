@@ -18,6 +18,7 @@ const Widget = () => {
   const seachTextValidation = (key) => {
     if (key === 'Enter') {
       setValid(true);
+      console.log("True");
     }
     else console.log('nope');
   }
