@@ -37,6 +37,9 @@
 .width-500 {
   width: 500px !important;
 }
+.height-30 {
+  height: 30px !important;
+}
 .height-50 {
   height: 50px !important;
 }
@@ -60,6 +63,25 @@
 }
 .height-500 {
   height: 500px !important;
+}
+.margin-mt1 {
+  margin-top: -0.3rem !important;
+}
+.margin-mt2 {
+  margin-top: -0.5rem !important;
+}
+.margin-mt3 {
+  margin-top: -1rem !important;
+}
+.margin-mt4 {
+  margin-top: -1.5rem !important;
+}
+.divider {
+  height: 0.5px;
+  background-color: rgb(63, 63, 63, 0.9);
+  color: rgb(71, 71, 71, 0.9);
+  width: 100%;
+  margin-bottom: 5px;
 }
 .fontsize-20 {
   font-size: 20px !important;

@@ -11793,23 +11793,23 @@ a.active {
 }
 
 .height20 {
-  height: 1.25rem;
+  height: 1.25rem !important;
 }
 
 .height30 {
-  height: 1.875rem;
+  height: 1.875rem !important;
 }
 
 .height40 {
-  height: 2.5rem;
+  height: 2.5rem !important;
 }
 
 .height50 {
-  height: 3.125rem;
+  height: 3.125rem !important;
 }
 
 .height60 {
-  height: 3.75rem;
+  height: 3.75rem !important;
 }
 
 .height70 {
