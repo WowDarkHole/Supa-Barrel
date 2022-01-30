@@ -17,6 +17,7 @@ import PageTitle from "../../../layouts/PageTitle";
 import loadable from "@loadable/component";
 import pMinDelay from "p-min-delay";
 import SortingTable from "../../table/SortingTable/SortingTable";
+import ActivityTable from "../../table/SortingTable/ActivityTable";
 const ApexBar2 = loadable(() => pMinDelay(import("../apexcharts/Bar2"), 1000));
 const ApexBar3 = loadable(() => pMinDelay(import("../apexcharts/Bar3"), 1000));
 const ApexRedialBar = loadable(() => pMinDelay(import("../apexcharts/RadialBar"), 1000));
@@ -44,6 +45,7 @@ function ChartSparkline() {
   const [valid, setValid] = useState(true);
   const [address, setAddress] = useState('');
   const [searchResult, setSearchResult] = useState(false);
+  const [tableNum, setTableNum] = useState(1);
   const WalletAddressVaidation = (key) => {
     if (key === 'Enter') {
       const valid = web3.utils.isAddress(address);
@@ -127,7 +129,14 @@ function ChartSparkline() {
         <span></span>
       )}
       {searchResult ? (
-        <SortingTable></SortingTable>
+        <div className="d-flex mb-4">
+          <button className="me-2 btn btn-outline-primary" onClick={() => setTableNum(1)}>Collections</button>
+          <button className="me-2 btn btn-outline-success" onClick={() => setTableNum(2)}>Activity</button>
+        </div>
+      ) : (<span></span>)}
+      {searchResult ? (
+        tableNum == 1 ? (
+          <SortingTable></SortingTable>) : (<ActivityTable></ActivityTable>)
       ) : (<span></span>)}
     </>
   );

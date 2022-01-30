@@ -179,7 +179,7 @@ const SideBar = () => {
           </li>
           <li className={`${email.includes(path) ? "mm-active" : ""}`}>
             <Link to="/email-compose" className="ai-icon" onClick={() => setPath("email-compose")}>
-              <i className="flaticon-025-dashboard"></i>
+              <i className="flaticon-072-printer"></i>
               <span className="nav-text">Features</span>
             </Link>
           </li>
@@ -191,7 +191,7 @@ const SideBar = () => {
           </li>
           <li className={`${plugins.includes(path) ? "mm-active" : ""}`}>
             <Link to="/chart-sparkline" className="ai-icon" onClick={() => setPath("chart-sparkline")} >
-              <i className="flaticon-025-dashboard"></i>
+              <i className="flaticon-022-copy"></i>
               <span className="nav-text">Wallet Analysis</span>
             </Link>
           </li>
