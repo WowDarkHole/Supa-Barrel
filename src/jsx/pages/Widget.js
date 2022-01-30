@@ -14,16 +14,19 @@ const MockupData = require('./MockupData1');
 
 const Widget = () => {
   const [valid, setValid] = useState(true);
-  const [address, setAddress] = useState('');
-  const seachTextValidation = (key) => {
+  const [searchValue, setSearchValue] = useState('');
+  const [tableData, setTableData] = useState(MockupData.default);
+  const getSearchResult = (key) => {
     if (key === 'Enter') {
       setValid(true);
-      console.log("True");
+      let td = MockupData.default;
+      const filterd = td.filter(function (el) {
+        const title = el.title.toLowerCase();
+        return title.includes(searchValue.toLowerCase());
+      });
+      setTableData(filterd);
     }
     else console.log('nope');
-  }
-  const getSearchResult = () => {
-
   }
   return (
     <Fragment>
@@ -31,8 +34,16 @@ const Widget = () => {
       <div className="card">
         <div className="card-body align-items-center justify-content-between">
           <div className="input-group search-area w-100">
-            <input type="text" className="form-control border-end-0 border-warning display-6 border-yellow height-75 h2 fontsize-25" placeholder="Search Collections" /*onChange={(event) => setAddress(event.target.value)}*/ onKeyDown={(e) => seachTextValidation(e.key)} />
-            <span className="input-group-text bg-transparent border-warning border-yellow height-75 h2 "><a href="#" onClick={() => seachTextValidation("Enter")}><i className="flaticon-381-search-2 fontsize-20"></i></a></span>
+            <input type="text"
+              className="form-control border-end-0 border-warning display-6 border-yellow height-75 h2 fontsize-25"
+              placeholder="Search Collections"
+              onChange={(event) => setSearchValue(event.target.value)}
+              onKeyDown={(e) => getSearchResult(e.key)} />
+            <span className="input-group-text bg-transparent border-warning border-yellow height-75 h2 ">
+              <a href="#" onClick={() => getSearchResult("Enter")}>
+                <i className="flaticon-381-search-2 fontsize-20"></i>
+              </a>
+            </span>
           </div>
           <div>
             {valid ? (
@@ -53,7 +64,7 @@ const Widget = () => {
                     <span>Lorem ipsum dolor sit amet, consectetur</span>
                   </div>
                 </div>
-                <DailyTrending data={MockupData.default} row={2} />
+                <DailyTrending data={tableData} row={2} />
               </div>
             </div>
           </div>
