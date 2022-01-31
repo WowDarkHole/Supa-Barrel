@@ -9,6 +9,7 @@ import PageTitle from "../../../../layouts/PageTitle";
 import nftImage from "../../../../../images/nfts/m1.png";
 import { Row, Card, Nav, Col, Pagination } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import ReactPaginate from 'react-paginate';
 const options = [
    { value: "chocolate", label: "Chocolate" },
    { value: "strawberry", label: "Strawberry" },
@@ -16,8 +17,19 @@ const options = [
 ];
 
 const ProductGrid = () => {
+   const itemsPerPage = 12;
    const [selectedOption, setSelectedOption] = useState(null);
+   const [listType, setListType] = useState("");
+   const [minEth, setMinEth] = useState(null);
+   const [maxEth, setMaxEth] = useState(null);
+   const [minRank, setMinRank] = useState(null);
+   const [maxRank, setMaxRank] = useState(null);
+   const [traitsCount, setTraitsCount] = useState(null);
+   const [traits, setTraits] = useState(null);
    const collectionName = "Bored NFT";
+   const [filteredNft, setFilteredNft] = useState(productData);
+   const [sortType, setSortType] = useState();
+   const [pageNum, setPageNum] = useState(1);
    const { navigationHader, openMenuToggle, background } = useContext(
       ThemeContext
    );
@@ -26,35 +38,102 @@ const ProductGrid = () => {
    //    openMenuToggle();
    // }, [])
 
-   const active = 1;
-   let items = [];
+   const [currentItems, setCurrentItems] = useState(productData.slice(0, 12));
+   const [pageCount, setPageCount] = useState(0);
+   // Here we use item offsets; we could also use page offsets
+   // following the API or data you're working with.
+   const [itemOffset, setItemOffset] = useState(0);
 
-   for (let number = 1; number <= 4; number++) {
-      items.push(
-         <Pagination.Item key={number} active={number === active}>
-            {number}
-         </Pagination.Item>
+   useEffect(() => {
+      // Fetch items from another resources.
+      const endOffset = itemOffset + itemsPerPage;
+      console.log(`Loading items from ${itemOffset} to ${endOffset}`);
+      console.log(filteredNft);
+      setCurrentItems(filteredNft.slice(itemOffset, endOffset));
+      setPageCount(Math.ceil(filteredNft.length / itemsPerPage));
+   }, [itemOffset, itemsPerPage]);
+
+   // Invoke when user click to request another page.
+   const handlePageClick = (event) => {
+      const newOffset = (event.selected * itemsPerPage) % filteredNft.length;
+      console.log(
+         `User requested page number ${event.selected}, which is offset ${newOffset}`
       );
+      setItemOffset(newOffset);
+   };
+
+   const onSubmitActions = () => {
+      getFilterResult(listType, minEth, maxEth, minRank, maxRank, traitsCount, traits);
    }
-   const pag = (size, gutter, variant, bg, circle) => (
-      <Pagination
-         size={size}
-         className={`mt-4  ${gutter ? "pagination-gutter" : ""} ${variant && `pagination-${variant}`
-            } ${!bg && "no-bg"} ${circle && "pagination-circle"}`}
-      >
-         <li className="page-item page-indicator">
-            <Link className="page-link" to="#">
-               <i className="la la-angle-left" />
-            </Link>
-         </li>
-         {items}
-         <li className="page-item page-indicator">
-            <Link className="page-link" to="#">
-               <i className="la la-angle-right" />
-            </Link>
-         </li>
-      </Pagination>
-   );
+   const getFilterResult = (listing, minPrice, maxPrice, minRank, maxRank, traitCount, traits) => {
+      let fd = filteredNft;
+      // if(listing){}
+      if (minPrice) {
+         const filtered = fd.filter(function (el) {
+            const price = Number(el.price);
+            return price > minPrice;
+         });
+         fd = filtered;
+      }
+      if (maxPrice) {
+         const filtered = fd.filter(function (el) {
+            const price = Number(el.price);
+            return price < maxPrice;
+         });
+         fd = filtered;
+      }
+      // if (minRank) {
+      //    const filtered = fd.filter(function (el) {
+      //       const price = Number(el.rank);
+      //       return price > minPrice;
+      //    });
+      //    fd = filtered;
+      // }
+      // if (maxRank) {
+      //    const filtered = fd.filter(function (el) {
+      //       const price = Number(el.rank);
+      //       return price < maxPrice;
+      //    });
+      //    fd = filtered;
+      // }
+      onFilteredPagination(fd);
+   }
+
+   const onFilteredPagination = (filteredData) => {
+      // let pagi = filteredData;
+      // console.log(filteredData);
+      // console.log("PageNum:", pageNum);
+      // const paged = pagi.slice((pageNum - 1) * 10, pageNum * 12);
+      // console.log(paged);
+      setFilteredNft(filteredData);
+   }
+
+   const onSortHandleChange = (e) => {
+      console.log(e.target.value);
+      setSortType(e.target.value);
+      let sd = filteredNft;
+      const sorted = sd.sort(function (a, b) {
+         switch (e.target.value) {
+            case "ltoh":
+               return Number(a.price) - Number(b.price);
+            case "htol":
+               return Number(b.price) - Number(a.price);
+            case "rarity":
+               break;
+            case "rl":
+               break;
+            case "id":
+               break;
+         }
+
+      })
+      sd = sorted;
+      onFilteredPagination(sd);
+   }
+
+   const onHandleTraits = (e) => {
+      setTraitsCount(traitsCount);
+   }
 
    return (
       <Fragment>
@@ -76,22 +155,47 @@ const ProductGrid = () => {
                   <h3>Item Filters</h3>
                   <h5>Listing Type</h5>
                   <div className="d-flex justify-content-between">
-                     <button className="btn btn-dark btn-xs me-2">Buy Now</button>
-                     <button className="btn btn-dark btn-xs">Buy Now</button>
+                     {/* <button className="btn btn-primary btn-xs me-2" onClick={() => setListType("buynow")}>Buy Now</button>
+                     <button className="btn btn-primary btn-xs" onClick={() => setListType("auction")}>Auction</button> */}
+                     <form onSubmit={(e) => e.preventDefault()}>
+                        <div className="form-group">
+                           <div className="form-check form-check-inline">
+                              <label className="form-check-label">
+                                 <input
+                                    type="checkbox"
+                                    className="form-check-input"
+                                    value=""
+                                    defaultChecked
+                                 />
+                                 Option 1
+                              </label>
+                           </div>
+                           <div className="form-check form-check-inline">
+                              <label className="form-check-label">
+                                 <input
+                                    type="checkbox"
+                                    className="form-check-input"
+                                    value=""
+                                 />
+                                 Option 2
+                              </label>
+                           </div>
+                        </div>
+                     </form>
                   </div>
                   <h5 className="mt-3">Price</h5>
                   <h6>(Buy Now Only)</h6>
                   <div className="d-flex justify-content-between align-items-center">
-                     <input className="form-control height-30" placeholder="Min ETH"></input>
+                     <input className="form-control height-30" placeholder="Min ETH" onChange={(event) => setMinEth(event.target.value)}></input>
                      <span className="height-1 border border-1 width-10 border-white mx-2"></span>
-                     <input className="form-control height-30" placeholder="Min ETH"></input>
+                     <input className="form-control height-30" placeholder="Min ETH" onChange={(event) => setMaxEth(event.target.value)}></input>
                   </div>
-                  <button className="btn btn-primary btn-sm width-100 mt-3"><h5 className="m-0">Apply</h5></button>
+                  <button className="btn btn-primary btn-sm width-100 mt-3" onClick={() => onSubmitActions()}><h5 className="m-0">Apply</h5></button>
                   <h5 className="mt-3">Rarity</h5>
                   <div className="d-flex justify-content-between align-items-center">
-                     <input className="form-control height-30" placeholder="Min Rank #"></input>
+                     <input className="form-control height-30" placeholder="Min Rank #" onChange={(event) => setMinRank(event.target.value)}></input>
                      <span className="height-1 border border-1 width-10 border-white mx-2"></span>
-                     <input className="form-control height-30" placeholder="Max Rank #"></input>
+                     <input className="form-control height-30" placeholder="Max Rank #" onChange={(event) => setMaxRank(event.target.value)}></input>
                   </div>
                   <button className="btn btn-primary btn-sm width-100 mt-3"><h5 className="m-0">Apply</h5></button>
                   <div className="d-flex justify-content-between mt-3">
@@ -108,11 +212,13 @@ const ProductGrid = () => {
                         defaultValue={"option"}
                         className="form-control height-30"
                         id="sel1"
+                        onChange={() => onHandleTraits()}
+                        value={traitsCount}
                      >
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
                      </select>
                   </div>
                </div>
@@ -233,21 +339,43 @@ const ProductGrid = () => {
                            defaultValue={"option"}
                            className="form-control height-30"
                            id="sort"
+                           value={sortType}
+                           onChange={(event) => onSortHandleChange(event)}
                         >
-                           <option>High to Low</option>
-                           <option>Low to High</option>
-                           <option>Low to High</option>
-                           <option>Low to High</option>
+                           <option value="rarity">Rarity</option>
+                           <option value="ltoh">Low to High</option>
+                           <option value="htol">High to Low</option>
+                           <option value="rl">Recently Listed</option>
+                           <option value="id">ID</option>
                         </select>
                      </div>
                      <text className="h5 m-0 ms-2">Price Floor: 85 ETH</text>
-                     <div className="align-items-center margin-mt4 ms-3">
-                        <Nav>{pag("sm", true, "", true, true)}</Nav>
+                     <div className="align-items-center ms-3">
+                        <ReactPaginate
+                           nextLabel="next >"
+                           onPageChange={handlePageClick}
+                           pageRangeDisplayed={3}
+                           marginPagesDisplayed={2}
+                           pageCount={pageCount}
+                           previousLabel="< previous"
+                           pageClassName="page-item"
+                           pageLinkClassName="page-link"
+                           previousClassName="page-item"
+                           previousLinkClassName="page-link"
+                           nextClassName="page-item"
+                           nextLinkClassName="page-link"
+                           breakLabel="..."
+                           breakClassName="page-item"
+                           breakLinkClassName="page-link"
+                           containerClassName="pagination"
+                           activeClassName="active"
+                           renderOnZeroPageCount={null}
+                        />
                      </div>
                   </div>
                </div>
                <div className="row mt-3">
-                  {productData.map((product) => (
+                  {currentItems.map((product) => (
                      <Products key={product.key} product={product} />
                   ))}
                </div>

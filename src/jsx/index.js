@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 
 /// React router dom
-import {  Switch, Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 
 /// Css
 import "./index.css";
@@ -105,7 +105,7 @@ import Error403 from "./pages/Error403";
 import Error404 from "./pages/Error404";
 import Error500 from "./pages/Error500";
 import Error503 from "./pages/Error503";
-import Setting from "./layouts/Setting";
+// import Setting from "./layouts/Setting";
 import { ThemeContext } from "../context/ThemeContext";
 
 const Markup = () => {
@@ -120,7 +120,7 @@ const Markup = () => {
     { url: "customers", component: CustomersPage },
     { url: "analytics", component: Analytics },
     { url: "review", component: Review },
-   
+
     { url: "task", component: Task },
 
     /// Apps
@@ -166,11 +166,11 @@ const Markup = () => {
     { url: "map-jqvmap", component: JqvMap },
     { url: "uc-lightgallery", component: Lightgallery },
 
-	///Redux
-	{ url: "todo", component: Todo },
-	{ url: "redux-form", component: ReduxForm },
+    ///Redux
+    { url: "todo", component: Todo },
+    { url: "redux-form", component: ReduxForm },
     { url: "redux-wizard", component: WizardForm },
-	
+
     /// Widget
     { url: "widget-basic", component: Widget },
 
@@ -192,7 +192,7 @@ const Markup = () => {
     { url: "form-validation-jquery", component: jQueryValidation },
 
     /// table
-	{ url: 'table-filtering', component: FilteringTable },
+    { url: 'table-filtering', component: FilteringTable },
     { url: 'table-sorting', component: SortingTable },
     { url: "table-datatable-basic", component: DataTable },
     { url: "table-bootstrap-basic", component: BootstrapTable },
@@ -217,9 +217,8 @@ const Markup = () => {
     <>
       <div
         id={`${!pagePath ? "main-wrapper" : ""}`}
-        className={`${!pagePath ? "show" : "mh100vh"}  ${
-          menuToggle ? "menu-toggle" : ""
-        }`}
+        className={`${!pagePath ? "show" : "mh100vh"}  ${menuToggle ? "menu-toggle" : ""
+          }`}
       >
         {!pagePath && <Nav />}
 
@@ -242,7 +241,7 @@ const Markup = () => {
         </div>
         {!pagePath && <Footer />}
       </div>
-      <Setting />
+      {/* <Setting /> */}
     </>
   );
 };
