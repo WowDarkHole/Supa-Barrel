@@ -33,27 +33,22 @@ const ProductGrid = () => {
    const { navigationHader, openMenuToggle, background } = useContext(
       ThemeContext
    );
-   // useEffect(() => {
-   //    console.log("!!!!!!");
-   //    openMenuToggle();
-   // }, [])
+   useEffect(() => {
+      console.log("!!!!!!");
+      openMenuToggle();
+   }, [])
 
    const [currentItems, setCurrentItems] = useState(productData.slice(0, 12));
    const [pageCount, setPageCount] = useState(0);
-   // Here we use item offsets; we could also use page offsets
-   // following the API or data you're working with.
    const [itemOffset, setItemOffset] = useState(0);
 
    useEffect(() => {
-      // Fetch items from another resources.
       const endOffset = itemOffset + itemsPerPage;
       console.log(`Loading items from ${itemOffset} to ${endOffset}`);
-      console.log(filteredNft);
       setCurrentItems(filteredNft.slice(itemOffset, endOffset));
       setPageCount(Math.ceil(filteredNft.length / itemsPerPage));
-   }, [itemOffset, itemsPerPage]);
+   }, [itemOffset, itemsPerPage, filteredNft]);
 
-   // Invoke when user click to request another page.
    const handlePageClick = (event) => {
       const newOffset = (event.selected * itemsPerPage) % filteredNft.length;
       console.log(
@@ -66,8 +61,8 @@ const ProductGrid = () => {
       getFilterResult(listType, minEth, maxEth, minRank, maxRank, traitsCount, traits);
    }
    const getFilterResult = (listing, minPrice, maxPrice, minRank, maxRank, traitCount, traits) => {
-      let fd = filteredNft;
-      // if(listing){}
+      console.log("eth Clicked:", filteredNft);
+      let fd = productData;
       if (minPrice) {
          const filtered = fd.filter(function (el) {
             const price = Number(el.price);
@@ -96,20 +91,10 @@ const ProductGrid = () => {
       //    });
       //    fd = filtered;
       // }
-      onFilteredPagination(fd);
+      setFilteredNft(fd);
+      // onFilteredPagination(fd);
    }
-
-   const onFilteredPagination = (filteredData) => {
-      // let pagi = filteredData;
-      // console.log(filteredData);
-      // console.log("PageNum:", pageNum);
-      // const paged = pagi.slice((pageNum - 1) * 10, pageNum * 12);
-      // console.log(paged);
-      setFilteredNft(filteredData);
-   }
-
    const onSortHandleChange = (e) => {
-      console.log(e.target.value);
       setSortType(e.target.value);
       let sd = filteredNft;
       const sorted = sd.sort(function (a, b) {
@@ -128,7 +113,8 @@ const ProductGrid = () => {
 
       })
       sd = sorted;
-      onFilteredPagination(sd);
+      setFilteredNft(sd);
+      //useEffect not calling
    }
 
    const onHandleTraits = (e) => {
@@ -138,9 +124,9 @@ const ProductGrid = () => {
    return (
       <Fragment>
          {/* <PageTitle activeMenu="Blank" motherMenu="Layout" /> */}
-         {/* <button onClick={() => { openMenuToggle(); console.log("clicked") }}>
+         <button onClick={() => { openMenuToggle(); console.log("clicked") }}>
             <span>nav</span>
-         </button> */}
+         </button>
          <div className="d-flex">
             <div className="col-lg-2 me-4 pt-5">
                <div className="input-group mt-5 ">
@@ -352,12 +338,12 @@ const ProductGrid = () => {
                      <text className="h5 m-0 ms-2">Price Floor: 85 ETH</text>
                      <div className="align-items-center ms-3">
                         <ReactPaginate
-                           nextLabel="next >"
+                           nextLabel=" >"
                            onPageChange={handlePageClick}
                            pageRangeDisplayed={3}
                            marginPagesDisplayed={2}
                            pageCount={pageCount}
-                           previousLabel="< previous"
+                           previousLabel="< "
                            pageClassName="page-item"
                            pageLinkClassName="page-link"
                            previousClassName="page-item"

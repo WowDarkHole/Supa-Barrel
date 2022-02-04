@@ -25,10 +25,14 @@ const AmLineChart = (props) => {
 
     let dateAxis = x.xAxes.push(new am4charts.DateAxis());
     dateAxis.renderer.grid.template.location = 0;
+    dateAxis.renderer.axisFills.template.fill = am4core.color("#FFF");
+    dateAxis.renderer.grid.template.stroke = am4core.color("#FFF");
 
     let valueAxis = x.yAxes.push(new am4charts.ValueAxis());
     valueAxis.tooltip.disabled = true;
     valueAxis.renderer.minWidth = 35;
+    valueAxis.renderer.axisFills.template.fill = am4core.color("#FFF");
+    valueAxis.renderer.grid.template.stroke = am4core.color("#FFF");
 
     let series = x.series.push(new am4charts.LineSeries());
     series.dataFields.dateX = "date";
@@ -36,14 +40,25 @@ const AmLineChart = (props) => {
     series.dataFields.valueY = "value";
     series.tooltipText = "{valueY.value}";
     series.strokeWidth = 3;
+    // series.xAxis.renderer.baseGrid.disabled = true;
+    // series.yAxis.renderer.baseGrid.disabled = true;
+    // series.columns.template.fill = am4core.color("#104547");
     series.xAxis.stroke = am4core.color("#FFFFFF");
     series.yAxis.stroke = am4core.color("#FFFFFF");
-    series.xAxis.renderer.grid.color = am4core.color("#FFFFFF");
+    // series.xAxis.renderer.grid.color = am4core.color("#FFFFFF");
     // series.renderer.grid.template.stroke = "#ff0000";
     // series.ValueAxis.gridColor = am4core.color("#FFFFFF");
 
     x.cursor = new am4charts.XYCursor();
+    x.cursor.lineX.stroke = am4core.color("#FFF");
+    x.cursor.lineX.strokeWidth = 2;
+    x.cursor.lineX.fill = am4core.color("#FFF");
+    x.cursor.lineX.fillOpacity = 0.1;
 
+    x.cursor.lineY.stroke = am4core.color("#FFF");
+    x.cursor.lineY.strokeWidth = 2;
+    x.cursor.lineY.fill = am4core.color("#FFF");
+    x.cursor.lineY.fillOpacity = 0.1;
     // let scrollbarX = new am4charts.XYChartScrollbar();
     // scrollbarX.series.push(series);
     // x.scrollbarX = scrollbarX;
