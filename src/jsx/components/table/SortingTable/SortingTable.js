@@ -42,7 +42,7 @@ export const SortingTable = () => {
 												<th {...column.getHeaderProps(column.getSortByToggleProps())}>
 													{column.render('Header')}
 													<span className="ml-1">
-														{column.isSorted ? (column.isSortedDesc ? <i className="fa fa-arrow-down" /> : <i className="fa fa-arrow-up" />) : ''}
+														{column.isSorted ? (column.isSortedDesc ? <i className="fa fa-arrow-up" /> : <i className="fa fa-arrow-down" />) : ''}
 													</span>
 												</th>
 											))}

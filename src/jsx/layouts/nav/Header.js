@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { Link } from "react-router-dom";
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 /// Scroll
 import PerfectScrollbar from "react-perfect-scrollbar";
 
@@ -14,7 +15,7 @@ import { useEthers, useEtherBalance } from "@usedapp/core";
 const Header = ({ onNote }) => {
 
   const { activateBrowserWallet, account } = useEthers();
-
+  const [copied, setCopied] = useState(false);
   const handleConnectWallet = () => {
     console.log("handled");
     activateBrowserWallet();
@@ -27,6 +28,10 @@ const Header = ({ onNote }) => {
         return () => window.ethereum.removeListener('accountsChanged', accounts);
       });
     }
+  }
+
+  const onCopyAddress = () => {
+    setCopied(true);
   }
   return (
     <div className="header">
@@ -53,13 +58,10 @@ const Header = ({ onNote }) => {
             </div>
             <ul className="navbar-nav header-right main-notification">
               <li className="nav-item recipe">
-                {account ? <span className='btn btn-primary btn-rounded '>
-                  {account &&
-                    `${account.slice(0, 6)}...${account.slice(
-                      account.length - 4,
-                      account.length
-                    )}`}
-                </span> : <button className="btn btn-primary btn-rounded" onClick={() => handleConnectWallet()}> Connect Wallet </button>}
+                {account ? <CopyToClipboard onCopy={copied} text={account ? account : 'none'}>
+                  <button type="button" className='btn btn-primary btn-rounded' onClick={() => onCopyAddress()} data-bs-toggle="tooltip" data-bs-placement="top" title="Copy to Clipboard">
+                    {account && `${account.slice(0, 6)}...${account.slice(account.length - 4, account.length)}`}
+                  </button></CopyToClipboard> : <button className="btn btn-primary btn-rounded" onClick={() => handleConnectWallet()}> Connect Wallet </button>}
               </li>
 
               <Dropdown

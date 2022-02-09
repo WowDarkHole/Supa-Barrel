@@ -1,10 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link } from "react-router-dom";
-import {Dropdown} from 'react-bootstrap';
+import { Dropdown } from 'react-bootstrap';
 
 
-function DropdownBlog(){
-	return(
+function DropdownBlog() {
+	return (
 		<>
 			<Dropdown className="dropdown ml-auto">
 				<Dropdown.Toggle as="div" className="btn-link i-false" data-bs-toggle="dropdown" >
@@ -27,7 +27,7 @@ function DropdownBlog(){
 	)
 }
 
-const Customers = () =>{
+const Customers = () => {
 	const [data, setData] = useState(
 		document.querySelectorAll("#customers_wrapper tbody tr")
 	);
@@ -45,50 +45,50 @@ const Customers = () =>{
 			}
 		}
 	};
-   // use effect
-   useEffect(() => {
-      setData(document.querySelectorAll("#customers_wrapper tbody tr"));
-      //chackboxFun();
+	// use effect
+	useEffect(() => {
+		setData(document.querySelectorAll("#customers_wrapper tbody tr"));
+		//chackboxFun();
 	}, [test]);
 
-  
-   // Active pagginarion
-   activePag.current === 0 && chageData(0, sort);
-   // paggination
-   let paggination = Array(Math.ceil(data.length / sort))
-      .fill()
-      .map((_, i) => i + 1);
 
-   // Active paggination & chage data
+	// Active pagginarion
+	activePag.current === 0 && chageData(0, sort);
+	// paggination
+	let paggination = Array(Math.ceil(data.length / sort))
+		.fill()
+		.map((_, i) => i + 1);
+
+	// Active paggination & chage data
 	const onClick = (i) => {
 		activePag.current = i;
 		chageData(activePag.current * sort, (activePag.current + 1) * sort);
 		settest(i);
 	};
 
-   
+
 	const chackbox = document.querySelectorAll(".sorting_1 input");
 	const motherChackBox = document.querySelector(".sorting_asc input");
 	const chackboxFun = (type) => {
-      for (let i = 0; i < chackbox.length; i++) {
-         const element = chackbox[i];
-         if (type === "all") {
-            if (motherChackBox.checked) {
-               element.checked = true;
-            } else {
-               element.checked = false;
-            }
-         } else {
-            if (!element.checked) {
-               motherChackBox.checked = false;
-               break;
-            } else {
-               motherChackBox.checked = true;
-            }
-         }
-      }
-   };
-	return(
+		for (let i = 0; i < chackbox.length; i++) {
+			const element = chackbox[i];
+			if (type === "all") {
+				if (motherChackBox.checked) {
+					element.checked = true;
+				} else {
+					element.checked = false;
+				}
+			} else {
+				if (!element.checked) {
+					motherChackBox.checked = false;
+					break;
+				} else {
+					motherChackBox.checked = true;
+				}
+			}
+		}
+	};
+	return (
 		<>
 			<div className="mb-sm-4 d-flex flex-wrap align-items-center text-head">
 				<h2 className="mb-3 me-auto">Customers</h2>
@@ -132,10 +132,10 @@ const Customers = () =>{
 									<tr role="row">
 										<th className="sorting_asc" >
 											<div className="form-check ms-2">
-												<input type="checkbox" onClick={() => chackboxFun("all")} className="form-check-input" id="checkAll" required=""/>
+												<input type="checkbox" onClick={() => chackboxFun("all")} className="form-check-input" id="checkAll" required="" />
 												<label className="form-check-label" htmlFor="checkAll"></label>
 											</div>
-											
+
 										</th>
 										<th>Customer ID</th>
 										<th>Join Date</th>
@@ -161,144 +161,144 @@ const Customers = () =>{
 										<td>Olivia Shine</td>
 										<td className="text-ov">35 Station Road London</td>
 										<td className="text-ov">$82.46</td>
-									
+
 										<td><span className="btn bgl-danger text-danger btn-rounded btn-sm">$321.23</span></td>
 										<td><DropdownBlog /></td>
 									</tr>
 									<tr role="row" className="even">
-										<td className="sorting_1">  
+										<td className="sorting_1">
 											<div className="form-check  ms-2">
 												<input type="checkbox" onClick={() => chackboxFun()}
 													className="form-check-input" id="customCheckBox21" required=""
 												/>
 												<label className="form-check-label" htmlFor="customCheckBox21"></label>
-											</div> 
+											</div>
 										</td>
 										<td>#0001234</td>
 										<td className="wspace-no">26 March 2020, 12:42 AM</td>
 										<td>James WItcwicky</td>
 										<td className="text-ov">Corner Street 5th London</td>
 										<td className="text-ov">$82.46</td>
-									
+
 										<td><span className="btn bgl-success text-success btn-rounded btn-sm">$199.35</span></td>
 										<td><DropdownBlog /></td>
 									</tr>
 									<tr role="row" className="odd">
-										<td className="sorting_1">  
+										<td className="sorting_1">
 											<div className="form-check  ms-2">
 												<input type="checkbox" onClick={() => chackboxFun()}
 													className="form-check-input" id="customCheckBox22" required=""
 												/>
 												<label className="form-check-label" htmlFor="customCheckBox22"></label>
-											</div> 
+											</div>
 										</td>
 										<td>#0001234</td>
 										<td className="wspace-no">26 March 2020, 12:42 AM</td>
 										<td>Veronica</td>
 										<td className="text-ov">21 King Street London</td>
 										<td className="text-ov">$82.46</td>
-									
+
 										<td><span className="btn bgl-danger text-danger btn-rounded btn-sm">$239.24</span></td>
 										<td><DropdownBlog /></td>
 									</tr>
 									<tr role="row" className="even">
-										<td className="sorting_1">  
+										<td className="sorting_1">
 											<div className="form-check  ms-2">
 												<input type="checkbox" onClick={() => chackboxFun()}
 													className="form-check-input" id="customCheckBox23" required=""
 												/>
 												<label className="form-check-label" htmlFor="customCheckBox23"></label>
-											</div> 
+											</div>
 										</td>
 										<td>#0001234</td>
 										<td className="wspace-no">26 March 2020, 12:42 AM</td>
 										<td>Emilia Johanson</td>
 										<td className="text-ov">67 St. John’s Road London</td>
 										<td className="text-ov">$82.46</td>
-									
+
 										<td><span className="btn bgl-success text-success btn-rounded btn-sm">$149.99</span></td>
 										<td><DropdownBlog /></td>
 									</tr>
-									<tr role="row" className="odd">	
-										<td className="sorting_1">  
+									<tr role="row" className="odd">
+										<td className="sorting_1">
 											<div className="form-check  ms-2">
 												<input type="checkbox" onClick={() => chackboxFun()}
 													className="form-check-input" id="customCheckBox24" required=""
 												/>
 												<label className="form-check-label" htmlFor="customCheckBox24"></label>
-											</div> 
+											</div>
 										</td>
 										<td>#0001234</td>
 										<td className="wspace-no">26 March 2020, 12:42 AM</td>
 										<td>Emilia Johanson</td>
 										<td className="text-ov">67 St. John’s Road London</td>
 										<td className="text-ov">$82.46</td>
-									
+
 										<td><span className="btn bgl-success text-success btn-rounded btn-sm">$236.21</span></td>
 										<td><DropdownBlog /></td>
 									</tr>
 									<tr role="row" className="even">
-										<td className="sorting_1">  
+										<td className="sorting_1">
 											<div className="form-check  ms-2">
 												<input type="checkbox" onClick={() => chackboxFun()}
 													className="form-check-input" id="customCheckBox25" required=""
 												/>
 												<label className="form-check-label" htmlFor="customCheckBox25"></label>
-											</div> 
+											</div>
 										</td>
 										<td>#0001234</td>
 										<td className="wspace-no">26 March 2020, 12:42 AM</td>
 										<td>Emilia Johanson</td>
 										<td className="text-ov">67 St. John’s Road London</td>
 										<td className="text-ov">$82.46</td>
-									
+
 										<td><span className="btn bgl-success text-success btn-rounded btn-sm">$450.45</span></td>
 										<td><DropdownBlog /></td>
 									</tr>
 									<tr role="row" className="odd">
-										<td className="sorting_1">  
+										<td className="sorting_1">
 											<div className="form-check  ms-2">
 												<input type="checkbox" onClick={() => chackboxFun()}
 													className="form-check-input" id="customCheckBox26" required=""
 												/>
 												<label className="form-check-label" htmlFor="customCheckBox26"></label>
-											</div> 
+											</div>
 										</td>
 										<td>#0001234</td>
 										<td className="wspace-no">26 March 2020, 12:42 AM</td>
 										<td>Emilia Johanson</td>
 										<td className="text-ov">67 St. John’s Road London</td>
 										<td className="text-ov">$82.46</td>
-									
+
 										<td><span className="btn bgl-success text-success btn-rounded btn-sm">199.99</span></td>
 										<td><DropdownBlog /></td>
-									</tr>	
+									</tr>
 									<tr role="row" className="even">
-										<td className="sorting_1">  
+										<td className="sorting_1">
 											<div className="form-check  ms-2">
 												<input type="checkbox" onClick={() => chackboxFun()}
 													className="form-check-input" id="customCheckBox27" required=""
 												/>
 												<label className="form-check-label" htmlFor="customCheckBox27"></label>
-											</div> 
+											</div>
 										</td>
 										<td>#0001234</td>
 										<td className="wspace-no">26 March 2020, 12:42 AM</td>
 										<td>Jessica Wong</td>
 										<td className="text-ov">11 Church Road London</td>
 										<td className="text-ov">$82.46</td>
-									
+
 										<td><span className="btn bgl-danger text-danger btn-rounded btn-sm">$42.86</span></td>
 										<td><DropdownBlog /></td>
 									</tr>
 									<tr role="row" className="odd">
-										<td className="sorting_1">  
+										<td className="sorting_1">
 											<div className="form-check  ms-2">
 												<input type="checkbox" onClick={() => chackboxFun()}
 													className="form-check-input" id="customCheckBox28" required=""
 												/>
 												<label className="form-check-label" htmlFor="customCheckBox28"></label>
-											</div> 
+											</div>
 										</td>
 										<td>#0001234</td>
 										<td className="wspace-no">26 March 2020, 12:42 AM</td>
@@ -309,13 +309,13 @@ const Customers = () =>{
 										<td><DropdownBlog /></td>
 									</tr>
 									<tr role="row" className="even">
-										<td className="sorting_1">  
+										<td className="sorting_1">
 											<div className="form-check  ms-2">
 												<input type="checkbox" onClick={() => chackboxFun()}
 													className="form-check-input" id="customCheckBox29" required=""
 												/>
 												<label className="form-check-label" htmlFor="customCheckBox29"></label>
-											</div> 
+											</div>
 										</td>
 										<td>#0001234</td>
 										<td className="wspace-no">26 March 2020, 12:42 AM</td>
@@ -326,13 +326,13 @@ const Customers = () =>{
 										<td><DropdownBlog /></td>
 									</tr>
 									<tr role="row" className="odd">
-										<td className="sorting_1">  
+										<td className="sorting_1">
 											<div className="form-check  ms-2">
 												<input type="checkbox" onClick={() => chackboxFun()}
 													className="form-check-input" id="customCheckBox30" required=""
 												/>
 												<label className="form-check-label" htmlFor="customCheckBox30"></label>
-											</div> 
+											</div>
 										</td>
 										<td>#0001234</td>
 										<td className="wspace-no">26 March 2020, 12:42 AM</td>
@@ -360,32 +360,31 @@ const Customers = () =>{
 										className="paginate_button previous disabled"
 										to="/customers"
 										onClick={() =>
-										   activePag.current > 0 &&
-										   onClick(activePag.current - 1)
+											activePag.current > 0 &&
+											onClick(activePag.current - 1)
 										}
-									 >
+									>
 										<i className="fa fa-angle-double-left" aria-hidden="true"></i>
 									</Link>
 									<span>
 										{paggination.map((number, i) => (
-										   <Link
-											  key={i}
-											  to="/customers"
-											  className={`paginate_button  ${
-												 activePag.current === i ? "current" : ""
-											  } `}
-											  onClick={() => onClick(i)}
-										   >
-											  {number}
-										   </Link>
+											<Link
+												key={i}
+												to="/customers"
+												className={`paginate_button  ${activePag.current === i ? "current" : ""
+													} `}
+												onClick={() => onClick(i)}
+											>
+												{number}
+											</Link>
 										))}
 									</span>
 									<Link
 										className="paginate_button next"
 										to="/customers"
 										onClick={() =>
-										   activePag.current + 1 < paggination.length &&
-										   onClick(activePag.current + 1)
+											activePag.current + 1 < paggination.length &&
+											onClick(activePag.current + 1)
 										}
 									>
 										<i className="fa fa-angle-double-right" aria-hidden="true"></i>
@@ -393,9 +392,9 @@ const Customers = () =>{
 								</div>
 							</div>
 						</div>
-					</div>		
-				</div>	
-			</div>	
+					</div>
+				</div>
+			</div>
 		</>
 	)
 }
