@@ -1,6 +1,10 @@
 import React, { useState, Fragment } from "react";
 
 import { Row, Col, Card } from "react-bootstrap";
+import { Audio, BallTriangle } from 'react-loader-spinner';
+import AmLineChart from "../Amcharts/linechart";
+import moment from 'moment';
+import axios from 'axios';
 import { Link } from "react-router-dom";
 import {
   Sparklines,
@@ -46,13 +50,45 @@ function ChartSparkline() {
   const [address, setAddress] = useState('');
   const [searchResult, setSearchResult] = useState(false);
   const [tableNum, setTableNum] = useState(1);
+  const [loading, setLoading] = useState(false);
+  const [totalAccountValue, setTotalAccountValue] = useState([]);
+  const [totalEtherValue, setTotalEtherValue] = useState([]);
+  const [totalEtherDate, setTotalEtherDate] = useState([]);
+  const fetchNormalTxEtherscan = async () => {
+    const response = await axios.get('https://api.etherscan.io/api?module=account&action=txlist&address=' + address + '&startblock=0&endblock=99999999&page=1&offset=20&sort=asc&apikey=D37M8FCGG3MGHKWG47W8QDZ9128WGY2B2P');
+    const data = response.data.result;
+    console.log(data);
+    let value = 0, tradeValue = [], tradeDate = [];
+    data.forEach(function (e) {
+      if (e.from == address) {
+        value -= Number(e.value);
+        value -= Number(e.gasPrice) * Number(e.gasUsed);
+        tradeValue.push((value / Math.pow(10, 18)).toFixed(4)); // Add tx value to array
+        tradeDate.push(moment.unix(Number(e.timeStamp)).format("YYYY-MM-DD"));
+      }
+      if (e.to == address) {
+        value += Number(e.value);
+        tradeValue.push((value / Math.pow(10, 18)).toFixed(4));
+        tradeDate.push(moment.unix(Number(e.timeStamp)).format("YYYY-MM-DD"));
+        console.log(moment.unix(Number(e.timeStamp)).format("YYYY-MM-DD"));
+      }
+    });
+    setTotalEtherValue(tradeValue);
+    setTotalEtherDate(tradeDate);
+    if (response !== null) {
+      setSearchResult(true);
+    }
+    setLoading(false);
+  }
+
   const WalletAddressVaidation = (key) => {
     if (key === 'Enter') {
-      const valid = web3.utils.isAddress(address);
-      if (valid) {
+      const validAdd = web3.utils.isAddress(address);
+      if (validAdd) {
         setValid(true);
-        setSearchResult(true);
         console.log("Valid!");
+        setLoading(true);
+        fetchNormalTxEtherscan();
       }
       else {
         setValid(false);
@@ -81,6 +117,9 @@ function ChartSparkline() {
           </div>
         </div>
       </div>
+      {loading ? (<div className="justify-content-center d-flex">
+        <BallTriangle color="#eeb417" height={80} width={80} />
+      </div>) : <div></div>}
       {searchResult ? (<h1>{mockupSearchResult.username}</h1>) : (<span></span>)}
 
       {searchResult ? (
@@ -88,7 +127,8 @@ function ChartSparkline() {
           <Col xl={6} lg={6}>
             <Card>
               <Card.Body>
-                <ApexLine />
+                <AmLineChart id="TotalEtherValue" data={totalEtherValue} date={totalEtherDate} />
+                {/* <ApexLine data={totalEtherValue} /> */}
               </Card.Body>
               <Card.Footer className="d-flex justify-content-center">
                 <h4 className="card-title">Total Account Value</h4>
@@ -98,7 +138,7 @@ function ChartSparkline() {
           <Col xl={6} lg={6}>
             <Card>
               <Card.Body>
-                <ApexLine3 />
+                <ApexLine3 data={totalEtherValue} date={totalEtherDate} />
               </Card.Body>
               <Card.Footer className="d-flex justify-content-center">
                 <h4 className="card-title">Total ETH Value</h4>

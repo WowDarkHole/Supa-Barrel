@@ -64,7 +64,7 @@ const Header = ({ onNote }) => {
                   </button></CopyToClipboard> : <button className="btn btn-primary btn-rounded" onClick={() => handleConnectWallet()}> Connect Wallet </button>}
               </li>
 
-              <Dropdown
+              {/* <Dropdown
                 as="li"
                 className="nav-item  notification_dropdown "
               >
@@ -200,7 +200,7 @@ const Header = ({ onNote }) => {
                   </svg>
                   <span className="badge light text-white bg-primary rounded-circle">5</span>
                 </Dropdown.Toggle>
-              </Dropdown>
+              </Dropdown> */}
 
 
               {/* <Dropdown as="li" className="nav-item dropdown notification_dropdown ">

@@ -13,15 +13,19 @@ const AmLineChart = (props) => {
 
     x.paddingRight = 20;
 
-    let data = [];
-    let visits = 10;
+    let data = props.data;
+    let date = props.date;
+    let completeData = [];
 
-    for (let i = 1; i < 50; i++) {
-      visits += Math.round((Math.random() < 0.5 ? 1 : -1) * Math.random() * 10);
-      data.push({ date: new Date(2021, 0, i), name: "name" + i, value: visits });
+    // for (let i = 1; i < 50; i++) {
+    //   visits += Math.round((Math.random() < 0.5 ? 1 : -1) * Math.random() * 10);
+    //   data.push({ date: new Date(2021, 0, i), name: "name" + i, value: visits });
+    // }
+    for (let i = 0; i < data.length; i++) {
+      completeData.push({ date: date[i], name: "name" + i, value: data[i] });
     }
 
-    x.data = data;
+    x.data = completeData;
 
     let dateAxis = x.xAxes.push(new am4charts.DateAxis());
     dateAxis.renderer.grid.template.location = 0;
