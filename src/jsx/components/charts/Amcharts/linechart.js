@@ -1,4 +1,4 @@
-import React, { useRef, useLayoutEffect } from 'react';
+import React, { useRef, useLayoutEffect, useState } from 'react';
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
@@ -7,14 +7,18 @@ am4core.useTheme(am4themes_animated);
 
 const AmLineChart = (props) => {
   const chart = useRef(null);
-
+  const [data, setData] = useState(props.data);
+  const [date, setDate] = useState(props.date);
+  console.log(data, date);
   useLayoutEffect(() => {
     let x = am4core.create(props.id, am4charts.XYChart);
 
     x.paddingRight = 20;
 
-    let data = props.data;
-    let date = props.date;
+    // setData(props.data);
+    // setDate(props.date);
+    console.log('AmChart:', data);
+    console.log('AmChart:', date);
     let completeData = [];
 
     // for (let i = 1; i < 50; i++) {
@@ -72,7 +76,7 @@ const AmLineChart = (props) => {
     return () => {
       x.dispose();
     };
-  }, []);
+  }, [data, date]);
 
   return (
     <div id={props.id} style={{ width: "100%", height: "350px", color: "white" }}></div>
