@@ -8,11 +8,11 @@ const TableRow = (props) => {
   const [expanded, setExpanded] = useState(false);
   const expanderBody = useRef(null);
   const { row } = props;
-
+  console.log("---------", row);
   const graphMockup = {
     series: [{
       name: "Floor",
-      data: [30, 40, 45, 50, 49, 60, 70]
+      data: row.flooring
     }],
     options: {
       chart: {
@@ -104,7 +104,7 @@ const TableRow = (props) => {
 
   return [
     <tr key="main" >
-      {row.cells.map((cell, index) =>
+      {/* {row.cells.map((cell, index) =>
         index !== row?.cells?.length - 1
           ? <td {...cell.getCellProps()} key={index}> {cell.render('Cell')} </td>
           : <td key={index}>
@@ -116,8 +116,27 @@ const TableRow = (props) => {
               width={200}
             />
           </td>
-      )}
-      <td>
+      )} */}
+      <td key={0}>
+        <img src={row.image} className="img-fluid" width={100}></img>
+        <span className="ms-4">{row.collection}</span>
+      </td>
+      <td key={1}>
+        {row.floor}
+      </td>
+      <td key={2}>
+        {row.value}
+      </td>
+      <td key={3}>
+        <Chart
+          options={graphMockup.options}
+          series={graphMockup.series}
+          type="area"
+          height={100}
+          width={200}
+        />
+      </td>
+      <td key={4}>
         <Button variant="me-2 btn btn-outline-secondary btn-rounded" onClick={() => toggleExpander()}>
           <span>
             {

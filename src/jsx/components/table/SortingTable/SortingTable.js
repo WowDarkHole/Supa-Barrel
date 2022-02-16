@@ -6,11 +6,13 @@ import { COLUMNS } from './Columns';
 import TableRow from './TableRow';
 //import './table.css';
 
-export const SortingTable = () => {
+export const SortingTable = (props) => {
 
 	const columns = useMemo(() => COLUMNS, [])
-	const data = useMemo(() => MOCK_DATA, [])
-
+	// const data = useMemo(() => MOCK_DATA, [])
+	const data = props.data;
+	const customRow = props.data;
+	console.log("customRow:", customRow);
 	const tableInstance = useTable({ columns, data },
 		useSortBy
 	)
@@ -28,9 +30,9 @@ export const SortingTable = () => {
 		<>
 			{/* <PageTitle activeMenu="Sorting" motherMenu="Table" /> */}
 			<div className="card">
-				<div className="card-header">
+				{/* <div className="card-header">
 					<h4 className="card-title">Table Sorting</h4>
-				</div>
+				</div> */}
 				<div className="card-body">
 					<div className="table-responsive">
 						<div className="dataTables_wrapper">
@@ -51,8 +53,9 @@ export const SortingTable = () => {
 								</thead>
 								<tbody {...getTableBodyProps()}>
 
-									{rows.map((row, index) => {
-										prepareRow(row)
+									{data.map((row, index) => {
+										// prepareRow(row)
+										console.log("row::", row);
 										return (
 											<TableRow key={index} index={index} row={row}></TableRow>
 										)

@@ -1,44 +1,34 @@
 export const COLUMNS = [
 	{
-		Header: 'Id',
-		Footer: 'Id',
-		accessor: 'id'
+		Header: 'COLLECTION',
+		Footer: 'COLLECTION',
+		accessor: 'collection'
 	},
 	{
-		Header: 'First Name',
-		Footer: 'First Name',
-		accessor: 'first_name'
+		Header: 'FLOOR',
+		Footer: 'FLOOR',
+		accessor: 'floor'
 	},
 	{
-		Header: 'Last Name',
-		Footer: 'Last Name',
-		accessor: 'last_name'
+		Header: 'VALUE',
+		Footer: 'VALUE',
+		accessor: 'value'
 	},
 	{
-		Header: 'Date of  Birth',
-		Footer: 'Date of  Birth',
-		accessor: 'date_of_birth'
+		Header: 'FLOOR 7 DAYS',
+		Footer: 'FLOOR 7 DAYS',
+		accessor: 'flooring'
 	},
 	{
-		Header: 'Country',
-		Footer: 'Country',
-		accessor: 'country',
+		Header: '',
+		Footer: '',
+		accessor: 'sorting'
 	},
-	{
-		Header: 'Phone',
-		Footer: 'Phone',
-		accessor: 'phone'
-	},
-	{
-		Header: 'Age',
-		Footer: 'Phone',
-		accessor: 'age',
-	},
-	{
-		Header: 'Floor',
-		Footer: 'Floor',
-		accessor: 'floor',
-	}
+	// {
+	// 	Header: '',
+	// 	Footer: '',
+	// 	accessor: ''
+	// }
 ]
 
 export const GROUPED_COLUMNS = [

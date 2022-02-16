@@ -1,52 +1,32 @@
 [
   {
-    "id": 1,
-    "first_name": "Genevieve",
-    "last_name": "Blind",
-    "date_of_birth": "1/24/1996",
-    "country": "Afghanistan",
-    "phone": "2268978063",
-    "age": 82,
+    "collection": 1,
+    "floor": "Genevieve",
+    "value": "Blind",
     "flooring": [10, 20, 30, 40, 50, 60, 70, 80, 90]
   },
   {
-    "id": 3,
-    "first_name": "Caroline",
-    "last_name": "Haddock",
-    "date_of_birth": "12/5/1989",
-    "country": "Afghanistan",
-    "phone": "8251841635",
-    "age": 52,
+    "collection": 1,
+    "floor": "Genevieve",
+    "value": "Blind",
     "flooring": [11, 22, 33, 44, 55, 66, 77, 88, 99]
   },
   {
-    "id": 4,
-    "first_name": "Susana",
-    "last_name": "Tripney",
-    "date_of_birth": "6/28/2004",
-    "country": "Afghanistan",
-    "phone": "8961163082",
-    "age": 8,
+    "collection": 1,
+    "floor": "Genevieve",
+    "value": "Blind",
     "flooring": [15, 25, 35, 45, 55, 65, 75, 85, 99]
   },
   {
-    "id": 2,
-    "first_name": "Peggie",
-    "last_name": "Ninnoli",
-    "date_of_birth": "12/29/1990",
-    "country": "Afghanistan",
-    "phone": "2211803633",
-    "age": 22,
+    "collection": 1,
+    "floor": "Genevieve",
+    "value": "Blind",
     "flooring": [15, 25, 35, 45, 55, 65, 75, 85, 99]
   },
   {
-    "id": 5,
-    "first_name": "Ailina",
-    "last_name": "Walkley",
-    "date_of_birth": "6/19/2015",
-    "country": "Afghanistan",
-    "phone": "7514804940",
-    "age": 37,
+    "collection": 1,
+    "floor": "Genevieve",
+    "value": "Blind",
     "flooring": [15, 25, 35, 45, 55, 65, 75, 85, 99]
   },
   {

@@ -1,7 +1,7 @@
 import React, { useState, Fragment } from "react";
 
 import { Row, Col, Card } from "react-bootstrap";
-import { Audio, BallTriangle } from 'react-loader-spinner';
+import { Audio, BallTriangle, TailSpin } from 'react-loader-spinner';
 import AmLineChart from "../Amcharts/linechart";
 import moment from 'moment';
 import axios from 'axios';
@@ -29,31 +29,18 @@ const ApexLine = loadable(() => pMinDelay(import("../apexcharts/Line5"), 1000));
 const ApexLine3 = loadable(() => pMinDelay(import("../apexcharts/Line3"), 1000));
 const ApexLine4 = loadable(() => pMinDelay(import("../apexcharts/Line4"), 1000));
 
-const mockupSearchResult = {
-  username: "UserNameHere",
-  totalAccVal: {
-    data: [1, 2, 3, 4, 5, 56]
-  },
-  totalEthVal: {
-    data: [12, 31, 23, 123, 4, 34, 5, 57, 67, 568, 678, 567]
-  },
-  totalNftVal: {
-    data: [345, 56, 657, 456, 456, 2, 23, 4, 6, 567, 58, 34, 93]
-  },
-  totalProfit: {
-    data: [4, 2, 4, 5, 346, 67, 457, 647, 84, 56, 32, 45, 234]
-  },
-  time: ['2019-04-18T19:57:30.350275', '2019-04-19T19:57:30.350275', '2019-04-20T19:57:30.350275', '2019-04-21T19:57:30.350275', '2019-04-22T19:57:30.350275', '2019-04-23T19:57:30.350275',]
-}
 function ChartSparkline() {
   const [valid, setValid] = useState(true);
   const [address, setAddress] = useState('');
   const [searchResult, setSearchResult] = useState(false);
+  const [userName, setUserName] = useState('');
   const [tableNum, setTableNum] = useState(1);
   const [loading, setLoading] = useState(false);
   const [totalAccountValue, setTotalAccountValue] = useState([]);
   const [totalEtherValue, setTotalEtherValue] = useState([]);
   const [totalEtherDate, setTotalEtherDate] = useState([]);
+  const [collectionLoading, setCollectionLoading] = useState(true);
+  const [collectionData, setCollectionData] = useState([]);
   let tradeValue = [], tradeDate = [];
 
   const fetchNormalTxEtherscan = async () => {
@@ -90,7 +77,7 @@ function ChartSparkline() {
         if (dIndex < data.length - 1) {
           if (Number(e.timeStamp) < Number(val) && Number(val) <= Number(data[dIndex + 1].timeStamp)) {
             value += Number(internalTV[index]);
-            internalval += Number(internalTV[index]);
+            // internalval += Number(internalTV[index]);
             tradeValue.push((value / Math.pow(10, 18)).toFixed(4));
             tradeDate.push(internalTD[index]);
           }
@@ -103,7 +90,7 @@ function ChartSparkline() {
       internalTimeStamps.forEach(function (v, index) {
         if (Number(v) > Number(data[data.length - 1].timeStamp)) {
           value += Number(internalTV[index]);
-          internalval += Number(internalTV[index]);
+          // internalval += Number(internalTV[index]);
           tradeValue.push((value / Math.pow(10, 18)).toFixed(4));
           tradeDate.push(internalTD[index]);
         }
@@ -181,8 +168,29 @@ function ChartSparkline() {
 
     setSearchResult(true);
   }
-  const fetchOpenseaAPI = async () => {
 
+  const fetchOpenseaUserName = async () => {
+    const response = await axios.get('https://api.opensea.io/api/v1/events?account_address=' + address + '&only_opensea=false&offset=0&limit=20', { headers: { 'X-API-KEY': '992fa86f464944b5aef25b6d764d0c10' } });
+    const data = response.data.asset_events;
+    data.forEach(function (item) {
+      if (item.from_account) {
+        if (item.from_account.address.toLowerCase() == address.toLowerCase()) {
+          setUserName(item.from_account.user.username);
+        }
+      }
+    })
+  }
+  const fetchCollections = async () => {
+    const response = await axios.get('https://api.opensea.io/api/v1/collections?asset_owner=' + address + '&offset=1&limit=300');
+    const data = response.data;
+    const colData = [];
+    for (const val of data) {
+      const receive = await axios.get('https://api.opensea.io/api/v1/collection/' + val.slug + '/stats');
+      colData.push({ collection: val.name, image: val.image_url, floor: Number(receive.data.stats.floor_price), value: Number(receive.data.stats.seven_day_average_price).toFixed(4), flooring: [11, 22, 33, 44, 55, 66, 77] });
+    }
+    console.log("ColData:------------", colData);
+    setCollectionData(colData);
+    setCollectionLoading(false);
   }
   // const convert = (a, b) => {
   //   let prev = 0;
@@ -208,6 +216,8 @@ function ChartSparkline() {
         console.log("Valid!");
         setLoading(true);
         fetchNormalTxEtherscan();
+        fetchOpenseaUserName();
+        fetchCollections();
       }
       else {
         setValid(false);
@@ -221,7 +231,7 @@ function ChartSparkline() {
   return (
     <>
       {/* <PageTitle motherMenu="Charts" activeMenu="Sparkline" /> */}
-      <h1 className="justify-content-center d-flex">Wallet Analysis</h1>
+      {/* <h1 className="justify-content-center d-flex">Wallet Analysis</h1> */}
       <div style={{ height: '50px' }}></div>
       <div className="card">
         <div className="card-body align-items-center justify-content-between">
@@ -239,7 +249,7 @@ function ChartSparkline() {
       {loading ? (<div className="justify-content-center d-flex">
         <BallTriangle color="#eeb417" height={80} width={80} />
       </div>) : <div></div>}
-      {searchResult ? (<h1>{mockupSearchResult.username}</h1>) : (<span></span>)}
+      {searchResult ? (<h1>{userName}</h1>) : (<span></span>)}
 
       {searchResult ? (
         <Row>
@@ -277,7 +287,7 @@ function ChartSparkline() {
           <Col xl={6} lg={6}>
             <Card>
               <Card.Body>
-                {/* <ApexLine3 /> */}
+                <ApexLine3 />
               </Card.Body>
               <Card.Footer className="d-flex justify-content-center">
                 <h4 className="card-title">Total Profits</h4>
@@ -294,8 +304,10 @@ function ChartSparkline() {
         </div>
       ) : (<span></span>)}
       {searchResult ? (
-        tableNum == 1 ? (
-          <SortingTable></SortingTable>) : (<ActivityTable></ActivityTable>)
+        collectionLoading ? (
+          <TailSpin color="#00BFFF" height={80} width={80} />) : (
+          tableNum == 1 ? (
+            <SortingTable data={collectionData}></SortingTable>) : (<ActivityTable></ActivityTable>))
       ) : (<span></span>)}
     </>
   );
