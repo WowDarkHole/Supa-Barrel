@@ -9,24 +9,21 @@ const AmLineChart = (props) => {
   const chart = useRef(null);
   const [data, setData] = useState(props.data);
   const [date, setDate] = useState(props.date);
-  console.log(data, date);
   useLayoutEffect(() => {
     let x = am4core.create(props.id, am4charts.XYChart);
 
     x.paddingRight = 20;
 
-    // setData(props.data);
-    // setDate(props.date);
-    console.log('AmChart:', data);
-    console.log('AmChart:', date);
     let completeData = [];
 
     // for (let i = 1; i < 50; i++) {
     //   visits += Math.round((Math.random() < 0.5 ? 1 : -1) * Math.random() * 10);
     //   data.push({ date: new Date(2021, 0, i), name: "name" + i, value: visits });
     // }
-    for (let i = 0; i < data.length; i++) {
-      completeData.push({ date: date[i], name: "name" + i, value: data[i] });
+    if (data) {
+      for (let i = 0; i < data.length; i++) {
+        completeData.push({ date: date[i], name: "name" + i, value: data[i] });
+      }
     }
 
     x.data = completeData;

@@ -8,7 +8,6 @@ const TableRow = (props) => {
   const [expanded, setExpanded] = useState(false);
   const expanderBody = useRef(null);
   const { row } = props;
-  console.log("---------", row);
   const graphMockup = {
     series: [{
       name: "Floor",

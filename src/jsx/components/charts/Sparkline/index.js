@@ -41,6 +41,10 @@ function ChartSparkline() {
   const [totalEtherDate, setTotalEtherDate] = useState([]);
   const [collectionLoading, setCollectionLoading] = useState(true);
   const [collectionData, setCollectionData] = useState([]);
+  const [activityData, setActivityData] = useState([]);
+  const [activityLoading, setActivityLoading] = useState(true);
+  const [totalNFTValue, setTotalNFTValue] = useState([]);
+  const [totalNFTDate, setTotalNFTDate] = useState([]);
   let tradeValue = [], tradeDate = [];
 
   const fetchNormalTxEtherscan = async () => {
@@ -180,6 +184,7 @@ function ChartSparkline() {
       }
     })
   }
+
   const fetchCollections = async () => {
     const response = await axios.get('https://api.opensea.io/api/v1/collections?asset_owner=' + address + '&offset=1&limit=300');
     const data = response.data;
@@ -191,6 +196,38 @@ function ChartSparkline() {
     console.log("ColData:------------", colData);
     setCollectionData(colData);
     setCollectionLoading(false);
+  }
+
+  const fetchNFTTx = async () => {
+    setTableNum(2);
+    setActivityLoading(true);
+    let page = 1;
+    const response = await axios.get('https://api.etherscan.io/api?module=account&action=tokennfttx&address=' + address + '&page=' + page + '&offset=300&startblock=0&endblock=99999999&sort=asc&apikey=D37M8FCGG3MGHKWG47W8QDZ9128WGY2B2P')
+    const data = response.data.result;
+    const actData = [];
+    for (const val of data) {
+      let type = '';
+      if (val.from === '0x0000000000000000000000000000000000000000') type = 'Mint';
+      else if (val.from === address.toLocaleLowerCase()) type = 'Sell';
+      else if (val.to === address.toLocaleLowerCase()) type = 'Buy';
+      const moralisResponseImage = await axios.get('https://deep-index.moralis.io/api/v2/nft/' + val.contractAddress + '/' + val.tokenID + '?chain=eth&format=decimal', { headers: { 'X-API-Key': '6FJVVQ5QEUWEOOdApB0kkx2sgfQDdXxNyACMEVpLuSio3tK30e4uUWyKM9yp4jCr' } });
+      let image = JSON.parse(moralisResponseImage.data.metadata) ? JSON.parse(moralisResponseImage.data.metadata).image : '';
+
+      const moralisResponsePrice = await axios.get('https://deep-index.moralis.io/api/v2/block/' + val.blockNumber + '/nft/transfers?chain=eth&limit=500', { headers: { 'X-API-Key': '6FJVVQ5QEUWEOOdApB0kkx2sgfQDdXxNyACMEVpLuSio3tK30e4uUWyKM9yp4jCr' } });
+      const moralisDataPrice = moralisResponsePrice.data.result;
+      var price = 0;
+      if (moralisDataPrice) {
+        moralisDataPrice.forEach(function (item) {
+          if (moment(item.block_timestamp).format("YYYY-MM-DD hh:mm:ss") == moment.unix(Number(val.timeStamp)).format("YYYY-MM-DD hh:mm:ss")) { //comparing timestamps
+            price = (Number(item.value) / 1000000000000000000).toFixed(4) + " ETH";
+          }
+        })
+      }
+
+      actData.push({ item: image, token: val.tokenName, type: type, price: price, profit: '', seller: val.from, buyer: val.to, date: moment.unix(Number(val.timeStamp)).format("YYYY-MM-DD") });
+    }
+    setActivityData(actData);
+    setActivityLoading(false);
   }
   // const convert = (a, b) => {
   //   let prev = 0;
@@ -277,7 +314,7 @@ function ChartSparkline() {
           <Col xl={6} lg={6}>
             <Card>
               <Card.Body>
-                {/* <ApexLine /> */}
+                <ApexLine data={totalNFTValue} date={totalNFTDate} />
               </Card.Body>
               <Card.Footer className="d-flex justify-content-center">
                 <h4 className="card-title">Total NFT Value</h4>
@@ -300,15 +337,18 @@ function ChartSparkline() {
       {searchResult ? (
         <div className="d-flex mb-4">
           <button className="me-2 btn btn-outline-primary" onClick={() => setTableNum(1)}>Collections</button>
-          <button className="me-2 btn btn-outline-success" onClick={() => setTableNum(2)}>Activity</button>
+          <button className="me-2 btn btn-outline-success" onClick={() => fetchNFTTx()}>Activity</button>
         </div>
       ) : (<span></span>)}
       {searchResult ? (
-        collectionLoading ? (
-          <TailSpin color="#00BFFF" height={80} width={80} />) : (
-          tableNum == 1 ? (
-            <SortingTable data={collectionData}></SortingTable>) : (<ActivityTable></ActivityTable>))
-      ) : (<span></span>)}
+        tableNum == 1 ? (
+          collectionLoading ? (
+            <TailSpin color="#00BFFF" height={80} width={80} />) :
+            <SortingTable data={collectionData}></SortingTable>) :
+          activityLoading ? (
+            <TailSpin color="#00BFFF" height={80} width={80} />) :
+            (<ActivityTable data={activityData}></ActivityTable>))
+        : (<span></span>)}
     </>
   );
 }
