@@ -213,19 +213,14 @@ function ChartSparkline() {
       const moralisResponseImage = await axios.get('https://deep-index.moralis.io/api/v2/nft/' + val.contractAddress + '/' + val.tokenID + '?chain=eth&format=decimal', { headers: { 'X-API-Key': '6FJVVQ5QEUWEOOdApB0kkx2sgfQDdXxNyACMEVpLuSio3tK30e4uUWyKM9yp4jCr' } });
       let image = JSON.parse(moralisResponseImage.data.metadata) ? JSON.parse(moralisResponseImage.data.metadata).image : '';
 
-      const moralisResponsePrice = await axios.get('https://deep-index.moralis.io/api/v2/block/' + val.blockNumber + '/nft/transfers?chain=eth&limit=500', { headers: { 'X-API-Key': '6FJVVQ5QEUWEOOdApB0kkx2sgfQDdXxNyACMEVpLuSio3tK30e4uUWyKM9yp4jCr' } });
-      const moralisDataPrice = moralisResponsePrice.data.result;
-      var price = 0;
-      if (moralisDataPrice) {
-        moralisDataPrice.forEach(function (item) {
-          if (moment(item.block_timestamp).format("YYYY-MM-DD hh:mm:ss") == moment.unix(Number(val.timeStamp)).format("YYYY-MM-DD hh:mm:ss")) { //comparing timestamps
-            price = (Number(item.value) / 1000000000000000000).toFixed(4) + " ETH";
-          }
-        })
-      }
+      const moralisResponsePrice = await axios.get('https://deep-index.moralis.io/api/v2/transaction/' + val.hash + '?chain=eth', { headers: { 'X-API-Key': '6FJVVQ5QEUWEOOdApB0kkx2sgfQDdXxNyACMEVpLuSio3tK30e4uUWyKM9yp4jCr' } });
+      const price = Number(Number(moralisResponsePrice.data.value) / 1000000000000000000).toFixed(4) + "ETH";
+      // const moralisDataPrice = moralisResponsePrice.data.result;
 
-      actData.push({ item: image, token: val.tokenName, type: type, price: price, profit: '', seller: val.from, buyer: val.to, date: moment.unix(Number(val.timeStamp)).format("YYYY-MM-DD") });
+      actData.push({ item: image, token: val.tokenName + " #" + val.tokenID, type: type, price: price, profit: '', seller: val.from, buyer: val.to, date: moment.unix(Number(val.timeStamp)).format("YYYY-MM-DD") });
     }
+
+    console.log(actData);
     setActivityData(actData);
     setActivityLoading(false);
   }
