@@ -9,46 +9,46 @@ import asyncValidate from './AsyncValidate';
 import validate from './Validate';
 
 const renderTextField = (
-  { input, label, meta: { touched, error }, ...custom },
+	{ input, label, meta: { touched, error }, ...custom },
 ) => (
-  <TextField
-    hintText={label}
-    floatingLabelText={label}
-    errorText={touched && error}
-    {...input}
-    {...custom}
-  />
+	<TextField
+		hintText={label}
+		floatingLabelText={label}
+		errorText={touched && error}
+		{...input}
+		{...custom}
+	/>
 );
 
 const renderCheckbox = ({ input, label }) => (
-  <Checkbox
-	className="input-field-redux"
-    label={label}
-    checked={input.value ? true : false}
-    onCheck={input.onChange}
-  />
+	<Checkbox
+		className="input-field-redux"
+		label={label}
+		checked={input.value ? true : false}
+		onCheck={input.onChange}
+	/>
 );
 
 const renderRadioGroup = ({ input, ...rest }) => (
-  <RadioButtonGroup
-    {...input}
-    {...rest}
-    valueSelected={input.value}
-    onChange={(event, value) => input.onChange(value)}
-  />
+	<RadioButtonGroup
+		{...input}
+		{...rest}
+		valueSelected={input.value}
+		onChange={(event, value) => input.onChange(value)}
+	/>
 );
 
 const renderSelectField = (
-  { input, label, meta: { touched, error }, children, ...custom },
+	{ input, label, meta: { touched, error }, children, ...custom },
 ) => (
-  <SelectField
-    floatingLabelText={label}
-    errorText={touched && error}
-    {...input}
-    onChange={(event, index, value) => input.onChange(value)}
-    children={children}
-    {...custom}
-  />
+	<SelectField
+		floatingLabelText={label}
+		errorText={touched && error}
+		{...input}
+		onChange={(event, index, value) => input.onChange(value)}
+		children={children}
+		{...custom}
+	/>
 );
 
 const MaterialUiForm = props => {
@@ -66,7 +66,7 @@ const MaterialUiForm = props => {
 					<Field name="email" className="input-field-redux" component={renderTextField} label="Email" />
 				</div>
 				<div className="col-sm-6 mt-5">
-					<Field name="sex" className="input-field-redux d-flex" component={renderRadioGroup} > 
+					<Field name="sex" className="input-field-redux d-flex" component={renderRadioGroup} >
 						<RadioButton value="male" label="male" />
 						<RadioButton value="female" label="female" />
 					</Field>
@@ -92,13 +92,13 @@ const MaterialUiForm = props => {
 					<button className="btn btn-primary me-1" type="submit" disabled={pristine || submitting}>Submit</button>
 					<button className="btn btn-light ms-1" type="button" disabled={pristine || submitting} onClick={reset}>Clear Values</button>
 				</div>
-			</div>	
+			</div>
 		</form>
 	);
 };
 
 export default reduxForm({
-  form: 'MaterialUiForm', // a unique identifier for this form
-  validate,
-  asyncValidate,
+	form: 'MaterialUiForm', // a unique identifier for this form
+	validate,
+	asyncValidate,
 })(MaterialUiForm);

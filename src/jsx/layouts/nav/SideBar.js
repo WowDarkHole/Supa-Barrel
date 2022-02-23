@@ -195,16 +195,16 @@ const SideBar = () => {
               <span className="nav-text">Wallet Analysis</span>
             </Link>
           </li>
-          <li className={`${redux.includes(path) ? "mm-active" : ""}`}>
-            <Link to="/redux-form" className="ai-icon" onClick={() => setPath("redux-form")}>
-              <i className="flaticon-087-stop"></i>
-              <span className="nav-text">Bulk Buy</span>
-            </Link>
-          </li>
           <li className={`${widget.includes(path) ? "mm-active" : ""}`}>
             <Link to="widget-basic" className="ai-icon" onClick={() => setPath("widget-basic")}>
               <i className="flaticon-013-checkmark"></i>
               <span className="nav-text">Rarity</span>
+            </Link>
+          </li>
+          <li className={`${redux.includes(path) ? "mm-active" : ""}`}>
+            <Link to="/redux-form" className="ai-icon" onClick={() => setPath("redux-form")}>
+              <i className="flaticon-087-stop"></i>
+              <span className="nav-text">Setting</span>
             </Link>
           </li>
           {/* <li className={`${forms.includes(path) ? "mm-active" : ""}`}>
