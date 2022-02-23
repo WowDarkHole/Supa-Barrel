@@ -31,7 +31,7 @@ const ActivityTableRow = (props) => {
       </td>
 
       <td key='profit'>
-        <span>{row.values.profit}</span>
+        <span>{Number(row.values.profit).toFixed(3)}</span>
       </td>
 
       <td key='seller'>

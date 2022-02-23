@@ -45,6 +45,8 @@ function ChartSparkline() {
   const [activityLoading, setActivityLoading] = useState(true);
   const [totalNFTValue, setTotalNFTValue] = useState([]);
   const [totalNFTDate, setTotalNFTDate] = useState([]);
+  const [totalNFTProfitDate, setTotalNFTProfitDate] = useState([]);
+  const [totalNFTProfitData, setTotalNFTProfitData] = useState([]);
   let tradeValue = [], tradeDate = [];
 
   const fetchNormalTxEtherscan = async () => {
@@ -193,18 +195,17 @@ function ChartSparkline() {
       const receive = await axios.get('https://api.opensea.io/api/v1/collection/' + val.slug + '/stats');
       colData.push({ collection: val.name, image: val.image_url, floor: Number(receive.data.stats.floor_price), value: Number(receive.data.stats.seven_day_average_price).toFixed(4), flooring: [11, 22, 33, 44, 55, 66, 77] });
     }
-    console.log("ColData:------------", colData);
+    // console.log("ColData:------------", colData);
     setCollectionData(colData);
     setCollectionLoading(false);
   }
 
   const fetchNFTTx = async () => {
-    setTableNum(2);
     setActivityLoading(true);
     let page = 1;
     const response = await axios.get('https://api.etherscan.io/api?module=account&action=tokennfttx&address=' + address + '&page=' + page + '&offset=300&startblock=0&endblock=99999999&sort=asc&apikey=D37M8FCGG3MGHKWG47W8QDZ9128WGY2B2P')
     const data = response.data.result;
-    const actData = [];
+    let actData = [];
     for (const val of data) {
       let type = '';
       if (val.from === '0x0000000000000000000000000000000000000000') type = 'Mint';
@@ -217,10 +218,48 @@ function ChartSparkline() {
       const price = Number(Number(moralisResponsePrice.data.value) / 1000000000000000000).toFixed(4) + "ETH";
       // const moralisDataPrice = moralisResponsePrice.data.result;
 
-      actData.push({ item: image, token: val.tokenName + " #" + val.tokenID, type: type, price: price, profit: '', seller: val.from, buyer: val.to, date: moment.unix(Number(val.timeStamp)).format("YYYY-MM-DD") });
+      actData.push({ item: image, token: val.tokenName + " #" + String(val.tokenID).substring(0, 4), type: type, price: price, profit: '0', seller: val.from, buyer: val.to, date: moment.unix(Number(val.timeStamp)).format("YYYY-MM-DD") });
     }
 
-    console.log(actData);
+    const profitDate = [];
+    const profitValue = [];
+    let profitsum = 0;
+
+    for (let i = 0; i < actData.length; i++) {
+      if (actData[i].type == 'Sell') {
+        const buy = actData.filter((item) => (item.token == actData[i].token && item.type != 'Sell'));
+        if (buy[0]) {
+          const profit = Number(String(actData[i].price).substring(0, 5)) - Number(String(buy[0].price).substring(0, 5));
+          profitsum += profit;
+          actData[i].profit = profit;
+          profitDate.push(actData[i].date);
+          profitValue.push(profitsum);
+        }
+      }
+    }
+
+    //making Total NFT Value
+    const totalNV = [], totalND = [];
+    let totalSum = 0;
+    for (let i = 0; i < actData.length; i++) {
+      totalND.push(actData[i].date);
+      if (actData[i].type == 'Sell') {
+        const updatePrice = Number(Number(String(actData[i].price).substring(0, 5)).toFixed(3));
+        console.log("updatePrice:", updatePrice);
+        if (updatePrice == 0) {
+          totalSum += Number(actData[i].profit);
+        }
+        else
+          totalSum -= updatePrice;
+      }
+      totalSum += Number(Number(String(actData[i].price).substring(0, 5)).toFixed(3));
+      totalNV.push(Number(Number(totalSum).toFixed(3)));
+    }
+
+    setTotalNFTProfitDate(profitDate);
+    setTotalNFTProfitData(profitValue);
+    setTotalNFTValue(totalNV);
+    setTotalNFTDate(totalND);
     setActivityData(actData);
     setActivityLoading(false);
   }
@@ -250,6 +289,7 @@ function ChartSparkline() {
         fetchNormalTxEtherscan();
         fetchOpenseaUserName();
         fetchCollections();
+        fetchNFTTx();
       }
       else {
         setValid(false);
@@ -306,33 +346,36 @@ function ChartSparkline() {
               </Card.Footer>
             </Card>
           </Col>
-          <Col xl={6} lg={6}>
-            <Card>
-              <Card.Body>
-                <ApexLine data={totalNFTValue} date={totalNFTDate} />
-              </Card.Body>
-              <Card.Footer className="d-flex justify-content-center">
-                <h4 className="card-title">Total NFT Value</h4>
-              </Card.Footer>
-            </Card>
-          </Col>
-          <Col xl={6} lg={6}>
-            <Card>
-              <Card.Body>
-                <ApexLine3 />
-              </Card.Body>
-              <Card.Footer className="d-flex justify-content-center">
-                <h4 className="card-title">Total Profits</h4>
-              </Card.Footer>
-            </Card>
-          </Col>
+          {!activityLoading ? (
+            <Col xl={6} lg={6}>
+              <Card>
+                <Card.Body>
+                  <AmLineChart id="Total NFT Value" data={totalNFTValue} date={totalNFTDate} />
+                </Card.Body>
+                <Card.Footer className="d-flex justify-content-center">
+                  <h4 className="card-title">Total NFT Value</h4>
+                </Card.Footer>
+              </Card>
+            </Col>) : (<div><TailSpin color="#00BFFF" height={80} width={80} /></div>)}
+          {!activityLoading ? (
+            <Col xl={6} lg={6}>
+              <Card>
+                <Card.Body>
+                  <ApexLine3 data={totalNFTProfitData} date={totalNFTProfitDate} />
+                </Card.Body>
+                <Card.Footer className="d-flex justify-content-center">
+                  <h4 className="card-title">Total Profits</h4>
+                </Card.Footer>
+              </Card>
+            </Col>) : (<div><TailSpin color="#00BFFF" height={80} width={80} /></div>)
+          }
         </Row>) : (
         <span></span>
       )}
       {searchResult ? (
         <div className="d-flex mb-4">
           <button className="me-2 btn btn-outline-primary" onClick={() => setTableNum(1)}>Collections</button>
-          <button className="me-2 btn btn-outline-success" onClick={() => fetchNFTTx()}>Activity</button>
+          <button className="me-2 btn btn-outline-success" onClick={() => setTableNum(2)}>Activity</button>
         </div>
       ) : (<span></span>)}
       {searchResult ? (

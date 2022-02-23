@@ -20,6 +20,10 @@ const AmLineChart = (props) => {
     //   visits += Math.round((Math.random() < 0.5 ? 1 : -1) * Math.random() * 10);
     //   data.push({ date: new Date(2021, 0, i), name: "name" + i, value: visits });
     // }
+
+    //not updating
+    console.log(data, date);
+
     if (data) {
       for (let i = 0; i < data.length; i++) {
         completeData.push({ date: date[i], name: "name" + i, value: data[i] });
