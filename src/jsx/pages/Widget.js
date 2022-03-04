@@ -5,20 +5,23 @@ import { Dropdown, Nav, Tab } from "react-bootstrap";
 import PerfectScrollbar from "react-perfect-scrollbar";
 import { Link } from "react-router-dom";
 
-import DailyTrending from '../components/Lezato/Home/DailyTrending';
+import RaritySearchList from '../components/Lezato/Home/RaritySearchList';
+
 import TrandingBlog from '../components/Lezato/Home/TrandingBlog';
 import CustomersBlog from '../components/Lezato/Home/CustomersBlog';
 import News from '../components/Lezato/Card/News';
-
+import axios from 'axios';
 const MockupData = require('./MockupData1');
 
 const Widget = () => {
   const [valid, setValid] = useState(true);
   const [searchValue, setSearchValue] = useState('');
   const [tableData, setTableData] = useState(MockupData.default);
+
   const getSearchResult = (key) => {
     if (key === 'Enter') {
       setValid(true);
+      searchCollections();
       let td = MockupData.default;
       const filterd = td.filter(function (el) {
         const title = el.title.toLowerCase();
@@ -27,6 +30,13 @@ const Widget = () => {
       setTableData(filterd);
     }
     else console.log('nope');
+  }
+
+  const searchCollections = async () => {
+    const response = await axios.get('https://exodia.io/api/search/' + searchValue);
+    const data = response.data.collections;
+    console.log(data);
+    setTableData(data);
   }
   return (
     <Fragment>
@@ -61,10 +71,9 @@ const Widget = () => {
                 <div className="card-header border-0">
                   <div className="justify-content-center">
                     <h1 className="b-1">Notable Collections</h1>
-                    <span>Lorem ipsum dolor sit amet, consectetur</span>
                   </div>
                 </div>
-                <DailyTrending data={tableData} row={2} />
+                <RaritySearchList data={tableData} row={2} />
               </div>
             </div>
           </div>

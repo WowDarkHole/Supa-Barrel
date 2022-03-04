@@ -22,6 +22,7 @@ const AmLineChart = (props) => {
     // }
 
     //not updating
+    console.log("herer");
     console.log(data, date);
 
     if (data) {

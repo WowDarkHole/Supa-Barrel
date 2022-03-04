@@ -177,12 +177,12 @@ const SideBar = () => {
               <span className="nav-text">Home</span>
             </Link>
           </li>
-          <li className={`${email.includes(path) ? "mm-active" : ""}`}>
+          {/* <li className={`${email.includes(path) ? "mm-active" : ""}`}>
             <Link to="/email-compose" className="ai-icon" onClick={() => setPath("email-compose")}>
               <i className="flaticon-072-printer"></i>
               <span className="nav-text">Features</span>
             </Link>
-          </li>
+          </li> */}
           <li className={`${charts.includes(path) ? "mm-active" : ""}`}>
             <Link to="/chart-apexchart" className="ai-icon" onClick={() => setPath("chart-apexchart")}>
               <i className="flaticon-041-graph"></i>

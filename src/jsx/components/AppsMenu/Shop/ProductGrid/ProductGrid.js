@@ -7,7 +7,6 @@ import axios from 'axios';
 import { Audio, BallTriangle, TailSpin } from 'react-loader-spinner';
 
 /// Data
-import productData from "../productData";
 import PageTitle from "../../../../layouts/PageTitle";
 import nftImage from "../../../../../images/nfts/m1.png";
 import { Row, Card, Nav, Col, Pagination } from "react-bootstrap";
@@ -19,8 +18,8 @@ const options = [
    { value: "vanilla", label: "Vanilla" },
 ];
 
-const ProductGrid = () => {
-   const itemsPerPage = 12;
+const ProductGrid = (props) => {
+   const itemsPerPage = 500;
    const [selectedOption, setSelectedOption] = useState(0);
    const [listType, setListType] = useState("");
    const [minEth, setMinEth] = useState(0);
@@ -29,22 +28,24 @@ const ProductGrid = () => {
    const [maxRank, setMaxRank] = useState(0);
    const [traitsCount, setTraitsCount] = useState(0);
    const [traits, setTraits] = useState([]);
-   const collectionName = "Bored NFT";
-   const [filteredNft, setFilteredNft] = useState(productData);
+   const [loadedNft, setLoadedNft] = useState([]);
+   const [filteredNft, setFilteredNft] = useState([]);
    const [sortType, setSortType] = useState("ltoh");
-   const [pageNum, setPageNum] = useState(1);
+   const [pageNum, setPageNum] = useState(0);
    const [loading, setLoading] = useState(true);
    const { navigationHader, openMenuToggle, background } = useContext(
       ThemeContext
    );
-   const [currentItems, setCurrentItems] = useState(productData.slice(0, 12));
+   const [currentItems, setCurrentItems] = useState([]);
    const [pageCount, setPageCount] = useState(0);
    const [itemOffset, setItemOffset] = useState(0);
    const [collectionData, setCollectionData] = useState([]);
-   const slug = 'boredapeyachtclub';
+   const [contractAddress, setContractAddress] = useState('');
+   let contractA = '';
    // let traits = [];
+   const collectionName = props.location.state.name;
+   const slug = props.location.state.slug;
    useEffect(() => {
-      console.log("!!!!!!");
       openMenuToggle();
 
       const fetchSingleCollection = async () => {
@@ -52,17 +53,21 @@ const ProductGrid = () => {
          if (response) {
             setCollectionData(response.data.collection);
          }
+         contractA = response.data.collection.primary_asset_contracts[0].address;
+         console.log(contractA);
+         setContractAddress(contractA);
          const traiting = response.data.collection.traits.Background;
          const trait_data = [];
-         console.log(response.data.collection);
+         // setContractAddress(response.data.collection.primary_asset_contracts)
          // console.log(response.data.collection.traits);
          // setTraits(response.data.collection.traits);
          setTraits(response.data.collection.traits.Background);
          for (let i in traiting) {
             trait_data.push([i, traiting[i]]);
          }
-         console.log(trait_data);
+         // console.log(trait_data);
          setTraits(trait_data);
+         getCollectionsByPage();
          setLoading(false);
       }
 
@@ -82,6 +87,7 @@ const ProductGrid = () => {
       console.log(
          `User requested page number ${event.selected}, which is offset ${newOffset}`
       );
+      setPageNum(event.selected);
       setItemOffset(newOffset);
    };
 
@@ -90,7 +96,7 @@ const ProductGrid = () => {
    }
    const getFilterResult = (listing, minPrice, maxPrice, minRank, maxRank, traitCount, traits) => {
       console.log("eth Clicked:", filteredNft);
-      let fd = productData;
+      let fd = loadedNft;
       if (minPrice) {
          const filtered = fd.filter(function (el) {
             const price = Number(el.price);
@@ -150,12 +156,45 @@ const ProductGrid = () => {
       setTraitsCount(traitsCount);
    }
 
+   const getCollectionsByPage = async () => {
+      let apiURL = 'https://deep-index.moralis.io/api/v2/nft/' + contractA + '?chain=eth&format=decimal&offset=' + pageNum * 500;
+      console.log(apiURL);
+      const response = await axios.get(apiURL, { headers: { 'X-API-Key': '6FJVVQ5QEUWEOOdApB0kkx2sgfQDdXxNyACMEVpLuSio3tK30e4uUWyKM9yp4jCr' } });
+
+      const dataArr = response.data.result;
+      console.log(dataArr)
+      dataArr.forEach(async function (item, index) {
+         console.log(item);
+         const metadata = JSON.parse(item.metadata);
+         console.log("MetaData:", metadata);
+         dataArr[index].image = '';
+         if (metadata.image) {
+            dataArr[index].image = metadata.image;
+         }
+         else if (metadata.image_url) {
+            dataArr[index].image = metadata.image_url;
+         }
+         else {
+            const token_uri = await axios.get(item.token_uri);
+            if (token_uri.data.image) {
+               dataArr[index].image = token_uri.data.image;
+            }
+            else if (token_uri.data.image_url) {
+               dataArr[index].image = token_uri.data.image_url;
+            }
+
+         }
+         console.log("~~~" + dataArr[index].image);
+
+
+      })
+      setFilteredNft(dataArr);
+      console.log(dataArr);
+      setLoadedNft(dataArr);
+   }
+
    return (
       <Fragment>
-         {/* <PageTitle activeMenu="Blank" motherMenu="Layout" /> */}
-         {/* <button onClick={() => { openMenuToggle(); console.log("clicked") }}>
-            <span>nav</span>
-         </button> */}
          {!loading ? (
             <div className="d-flex">
                <div className="col-lg-2 me-4 pt-5">
@@ -259,9 +298,9 @@ const ProductGrid = () => {
                                  return <option>val</option>
                               })} */}
                            {
-                              traits.map(function (val) {
+                              traits ? traits.map(function (val) {
                                  <option>{val}</option>
-                              })
+                              }) : null
                            }
                         </select>
                      </div>
@@ -355,7 +394,7 @@ const ProductGrid = () => {
                   </div>
                   <div className="d-flex justify-content-between align-items-center mt-3">
                      <div className="d-flex">
-                        <span className="h5 m-0">10,000 Total Bored Ape Yacht Club</span>
+                        <span className="h5 m-0">{collectionData.name} : {Number(collectionData.stats.count).toFixed(0)} </span>
                         <span className="h5 m-0 ms-4">Price Floor: {collectionData.stats.floor_price}ETH</span>
                      </div>
                      <div className="d-flex align-items-center">
@@ -402,7 +441,7 @@ const ProductGrid = () => {
                   </div>
                   <div className="row mt-3">
                      {currentItems.map((product) => (
-                        <Products key={product.key} product={product} />
+                        <Products key={product.key} product={product} contractAddress={contractAddress} />
                      ))}
                   </div>
                </div>

@@ -11269,7 +11269,7 @@ h5,
 .h5,
 h6,
 .h6 {
-  font-family: var(--font-family-title);
+  /* font-family: var(--font-family-title); */
 }
 
 .box-shadow-none {

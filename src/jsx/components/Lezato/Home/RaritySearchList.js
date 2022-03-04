@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import PerfectScrollbar from "react-perfect-scrollbar";
 
-const DailyTrending = (props) => {
+const RaritySearchList = (props) => {
 	const { data, row } = props;
 	return (
 		<>
@@ -16,10 +16,13 @@ const DailyTrending = (props) => {
 						<div className="d-flex pb-3 mb-3 tr-row align-items-center border-bottom pe-3" key={ind}>
 							<span className="num">{item.id}</span>
 							<div className="me-auto pe-3">
-								<Link to={"/chart-apexchart"}><h2 className="text-black fs-22 font-w600">{item.title}</h2></Link>
-								<span className="text-black font-w500 d-inline-block me-3">Total Volume: {item.totalprice} </span>
+								<Link to={{
+									pathname: "/ecom-product-grid",
+									state: item
+								}}><h2 className="text-black fs-22 font-w600">{item.name}</h2></Link>
+								{/* <span className="text-black font-w500 d-inline-block me-3">Total Volume: {item.collectionStats[0].totalVolume} </span> */}
 							</div>
-							<Link to={"/ecom-product-grid"}><img src={item.image} alt="" /></Link>
+							<Link to={"/ecom-product-grid"}><img src={item.imageUrl} alt="" /></Link>
 						</div>
 					))}
 				</PerfectScrollbar>
@@ -27,4 +30,4 @@ const DailyTrending = (props) => {
 		</>
 	)
 }
-export default DailyTrending; 
+export default RaritySearchList; 

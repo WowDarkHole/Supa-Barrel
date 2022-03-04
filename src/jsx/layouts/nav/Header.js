@@ -49,12 +49,12 @@ const Header = ({ onNote }) => {
 					  ? "Dashboard"
 					  : finalName.join(" ")}
 				</div> */}
-              <li className="nav-item">
+              {/* <li className="nav-item">
                 <div className="input-group search-area">
                   <input type="text" className="form-control" placeholder="Search Here" />
                   <span className="input-group-text"><Link to={"#"}><i className="flaticon-381-search-2"></i></Link></span>
                 </div>
-              </li>
+              </li> */}
             </div>
             <ul className="navbar-nav header-right main-notification">
               <li className="nav-item recipe">

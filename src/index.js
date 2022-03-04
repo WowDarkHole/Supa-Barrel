@@ -15,7 +15,7 @@ ReactDOM.render(
         <Provider store={store}>
             <DAppProvider config={{}}>
                 <SimpleReactLightbox>
-                    <BrowserRouter basename='/react/demo'>
+                    <BrowserRouter basename='/'>
                         <ThemeContext>
                             <App />
                         </ThemeContext>
